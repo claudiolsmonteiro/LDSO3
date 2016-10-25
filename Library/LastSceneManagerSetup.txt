@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/1in2500_prototype.unity
+  isLoaded: 1
+  isActive: 1
