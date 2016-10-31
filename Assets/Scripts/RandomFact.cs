@@ -1,23 +1,41 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class RandomFact : MonoBehaviour {
 
-   // string[] facts = ["um", "dois", "tres"];
+    private string[] facts = { "um", "CMT is very dangerous", "tres" };
+    private string fact;
+    private System.Random rand;
+    private GUIStyle style;
 
-    public string getRandomFact()
+    void Start ()
     {
-        Random r = new Random();
-        //Console.Write(r);
+        // Initialize Variables
+        rand = new System.Random();
+        style = new GUIStyle();
 
-        string fact = "fact fact fact";
-        return fact;
+        // Generate Random Number
+        int r = rand.Next(0, facts.Length);
+        fact = r + ": " + facts[r];
+
+        // Format GUI
+        formatGUI();
+    
     }
+
+    void formatGUI()
+    {
+        style.fontSize = 14;
+        style.font = (Font)Resources.Load("Fonts/Jekyll"); ;
+    }
+
 
     void OnGUI()
     {
-        System.Console.Write("hello");
-        GUI.Label(new Rect(10, 10, 100, 20), "Hello World!");
+                
+        GUI.Box(new Rect(395, 180, 268, 75), fact, style);
     }
 
 }

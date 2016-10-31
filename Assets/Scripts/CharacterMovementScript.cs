@@ -10,36 +10,60 @@ public class CharacterMovementScript : MonoBehaviour {
     {
         _animator = GetComponent<Animator>();
     }
-	
+
 	// Update is called once per frame
 	void FixedUpdate () {
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) )
         {
-            _animator.SetFloat("Speed", 1.0f);
-            _animator.SetInteger("Direction", 0);
-            transform.position += Vector3.right * Speed * Time.deltaTime;
+            Move(0);
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            _animator.SetFloat("Speed", 1.0f);
-            _animator.SetInteger("Direction", 1);
-            transform.position += Vector3.left * Speed * Time.deltaTime;
+          Move(1);
         }
         else if (Input.GetKey(KeyCode.W))
         {
-            _animator.SetFloat("Speed", 1.0f);
-            _animator.SetInteger("Direction", 2);
-            transform.position += Vector3.up * Speed * Time.deltaTime;
+          Move(2);
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            _animator.SetFloat("Speed", 1.0f);
-            _animator.SetInteger("Direction", 3);
-            transform.position += Vector3.down*Speed*Time.deltaTime;
+          Move(3);
         }
         else
         {
-            _animator.SetFloat("Speed", 0.0f);
+          Stop();
         }
+    }
+
+    public void Move(int direction)
+    {
+        _animator.SetFloat("Speed", 1.0f);
+        _animator.SetInteger("Direction", direction);
+        if (direction == 0)
+        {
+          transform.position += Vector3.right * Speed * Time.deltaTime;
+        }
+        else if (direction == 1)
+        {
+          transform.position += Vector3.left * Speed * Time.deltaTime;
+        }
+        else if (direction == 2)
+        {
+          transform.position += Vector3.up * Speed * Time.deltaTime;
+        }
+        else if (direction == 3)
+        {
+          transform.position += Vector3.down * Speed * Time.deltaTime;
+        }
+    }
+
+    public void Stop()
+    {
+        _animator.SetFloat("Speed", 0.0f);
+    }
+
+    public void Action()
+    {
+
     }
 }
