@@ -6,34 +6,36 @@ public class TouchControls : MonoBehaviour {
     private CharacterMovementScript player;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         player = FindObjectOfType<CharacterMovementScript>();
+	  }
 
-	}
 
     public void UpArrow()
     {
-        player.Move(2);
+        player.MoveUp();
     }
 
     public void LeftArrow()
     {
-        player.Move(1);
+        player.MoveLeft();
     }
 
     public void RightArrow()
     {
-        player.Move(0);
+        player.MoveRight();
     }
 
     public void DownArrow()
     {
-        player.Move(3);
+        player.MoveDown();
     }
 
     public void UnpressedArrow()
     {
         player.Stop();
+        player.moving = -2;
     }
 
     public void Action()
