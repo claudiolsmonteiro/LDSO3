@@ -14,6 +14,8 @@ public class CharacterMovementScript : MonoBehaviour {
         _animator = GetComponent<Animator>();
     }
 
+
+
 	// Update is called once per frame
 	public void FixedUpdate () {
 
