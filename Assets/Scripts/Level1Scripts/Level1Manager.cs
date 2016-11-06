@@ -56,7 +56,7 @@ public class Level1Manager : MonoBehaviour {
 		}
 		if (displayNextButton) {
 			if (GUI.Button(new Rect(375, 225, 268, 25), "Continue")) {
-				SceneManager.LoadScene("SchoolOutdoors");
+				SceneManager.LoadScene("LookingForAPlayer");
 			}
 		}
 

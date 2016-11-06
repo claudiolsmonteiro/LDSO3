@@ -66,13 +66,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CMTcharacter.cs" />
     <Compile Include="Assets\Scripts\ChangeScene.cs" />
     <Compile Include="Assets\Scripts\CharacterMovementScript.cs" />
     <Compile Include="Assets\Scripts\Dialogue.cs" />
     <Compile Include="Assets\Scripts\Exit.cs" />
     <Compile Include="Assets\Scripts\FootballCharacter.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Level1Manager.cs" />
+    <Compile Include="Assets\Scripts\Level1Scripts\Level1Manager.cs" />
+    <Compile Include="Assets\Scripts\Level1Scripts\Level1bManager.cs" />
     <Compile Include="Assets\Scripts\RandomFact.cs" />
     <Compile Include="Assets\Scripts\TouchControls.cs" />
   </ItemGroup>
