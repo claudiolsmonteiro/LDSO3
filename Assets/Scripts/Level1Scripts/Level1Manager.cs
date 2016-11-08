@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -11,26 +12,49 @@ public class Level1Manager : MonoBehaviour {
   Text textComp;
 
 	// Dialogue Variables
-	public string[] messages = {"Hi! Do you want to play football with us?", "Great! We're missing a player. dou you want to help us find one?", "cool! see you later!"};
-	public string[] replies = {"yes", "no"};
+	public string[] messages = {"Hi! Do you want to play football with us?", "Great! We're missing a player. Do you want to help us find one?", "CCool! See you later!"};
+	public string[] replies1 = {"Hi! Yeah, that sound's great", "Hi! Thank you, but no."};
+	public string[] replies2 = {"Sure, I'll look for somebody", "Actually, I think I'll maybe join you later"};
+	private List<string[]> answersList;
+	private Button answerA;
+	private Button answerB;
+	private int answersCounter;
+
 	private int dialogueCounter;
 	public bool displayChoices = false;
 	public bool displayNextButton = false;
+	private bool interactionOver = false;
 
 	// GUI styling
 	private GUIStyle style, continueStyle;
 
+
+	// Initializ
 	void Start() {
 
-		// initialize variables
+		// Initialize variables
 		dialogueCounter = 0;
-		textComp = FindObjectOfType<Text>();
+		answersCounter = 0;
 
-		// Format buttons
-		formatGUI();
+		textComp = GameObject.Find("otherText").GetComponent<Text>();
 
-		// start actions
+		// Load possible actions
+		answersList = new List<string[]>();
+		answersList.Add(replies1);
+		answersList.Add(replies2);
+
+		// Initialize buttons
+		answerA = GameObject.Find("answerA").GetComponent<Button>();
+		answerB = GameObject.Find("answerB").GetComponent<Button>();
+
+		// Start actions
+		hideButtons();
 		continueDialogue();
+	}
+
+	void hideButtons() {
+		answerA.gameObject.SetActive(false);
+		answerB.gameObject.SetActive(false);
 	}
 
 	void clearText() {
@@ -39,19 +63,39 @@ public class Level1Manager : MonoBehaviour {
 
 	void continueDialogue() {
 		clearText();
+		hideButtons();
 		message = messages[dialogueCounter];
 		StartCoroutine(TypeText(message));
 		dialogueCounter++;
 	}
 
+
+	void saidNo() {
+		clearText();
+		hideButtons();
+		message = "Oh, ok. Maybe I'll see you later!";
+		StartCoroutine(TypeText(message));
+		interactionOver = true;
+	}
+
+	bool displayContinue = false;
+
+
+	void displayAnswers(string[] arr) {
+		answerA.GetComponentInChildren<Text>().text = arr[0];
+		answerA.onClick.AddListener( () => continueDialogue());
+		answerA.gameObject.SetActive(true);
+
+		answerB.GetComponentInChildren<Text>().text = arr[1];
+		answerB.onClick.AddListener( () => saidNo());
+		answerB.gameObject.SetActive(true);
+		answersCounter++;
+	}
+
 	void OnGUI() {
-		if (displayChoices){
-			if (GUI.Button(new Rect(375, 225, 268, 25), "yes")){
-				displayChoices = false;
-				continueDialogue();
-			}
-			if (GUI.Button(new Rect(375, 275, 268, 25), "no")) {
-				displayChoices = false;
+		if (displayContinue) {
+			if (GUI.Button(new Rect(375, 225, 268, 25), "Return")) {
+				SceneManager.LoadScene("SchoolOutdoors");
 			}
 		}
 		if (displayNextButton) {
@@ -69,19 +113,18 @@ public class Level1Manager : MonoBehaviour {
 			textComp.text += message[i];
 			yield return new WaitForSeconds (letterPause);
 		}
+		if (interactionOver) {
+			displayContinue = true;
+		}
 		if (dialogueCounter == messages.Length) {
 			displayChoices = false;
 			displayNextButton = true;
 		} else {
-			displayChoices = true;
+			displayAnswers(answersList[answersCounter]);
 		}
 	}
 
 
-	void formatGUI()	{
-		//	style.fontSize = 14;
-		//	style.font = (Font)Resources.Load("Fonts/Jekyll"); ;
-	}
 
 	// Update is called once per frame
 	void Update () {

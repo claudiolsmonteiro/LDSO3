@@ -1,8 +1,8 @@
 using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 public class Level1bManager : MonoBehaviour {
@@ -27,10 +27,12 @@ public class Level1bManager : MonoBehaviour {
 	private Button answerC;
 	private Button answerD;
 
+	private Button continueButton;
+	private Button returnButton;
+
 	// Dialogue Variables
 	private string[] mainCharacterLines = {"Hey, new kid! Wanna join us playing football? We need one more player."};
 	private string[] cmtCharacterLines = {"Hey there, thanks. I would love to play with you, but I cannot play football."};
-	private string[] choices = {"yes", "no"};
 
 	private string[] questionChoices1 = {
 		"Why? Is there something wrong?",
@@ -84,7 +86,6 @@ public class Level1bManager : MonoBehaviour {
 	// GUI styling
 	private GUIStyle style, continueStyle;
 
-
 	// Start interaction
 	void Start() {
 
@@ -113,6 +114,8 @@ public class Level1bManager : MonoBehaviour {
 		answerB = GameObject.Find("answerB").GetComponent<Button>();
 		answerC = GameObject.Find("answerC").GetComponent<Button>();
 		answerD = GameObject.Find("answerD").GetComponent<Button>();
+		continueButton = GameObject.Find("continue").GetComponent<Button>();
+		returnButton = GameObject.Find("return").GetComponent<Button>();
 
 		// Hide Speech balloons
 		mainCharacterSpeechBalloon.enabled = false;
@@ -145,6 +148,7 @@ public class Level1bManager : MonoBehaviour {
 			clearText(cmtCharacterSpeech);
 			clearText(mainCharacterSpeech);
 			// Write Text
+			Debug.Log(mainCharacterDialogueCounter);
 			message = mainCharacterLines[mainCharacterDialogueCounter];
 			StartCoroutine(TypeText(message));
 			mainCharacterDialogueCounter++;
@@ -197,7 +201,7 @@ public class Level1bManager : MonoBehaviour {
 
 		}
 		if (arr.Length == 4) {
-			answerD.GetComponentInChildren<Text>().text = arr[2];
+			answerD.GetComponentInChildren<Text>().text = arr[3];
 			answerD.onClick.AddListener( () => buttonClicked(3));
 			answerD.gameObject.SetActive(true);
 		}
@@ -209,6 +213,8 @@ public class Level1bManager : MonoBehaviour {
 		answerB.gameObject.SetActive(false);
 		answerC.gameObject.SetActive(false);
 		answerD.gameObject.SetActive(false);
+		continueButton.gameObject.SetActive(false);
+		returnButton.gameObject.SetActive(false);
 	}
 
 	// Clear Speech Balloon
@@ -218,24 +224,34 @@ public class Level1bManager : MonoBehaviour {
 
 
 	void buttonClicked(int buttonNumber) {
-		Debug.Log("chose option: " + buttonNumber);
 		hideButtons();
 		getCMTresponse(buttonNumber);
 	}
 
+	void continueClicked() {
+		displayNextButton = false;
+		continueButton.gameObject.SetActive(false);
+		continueDialogue();
+	}
+
+	void returnClicked() {
+
+	}
 
 	void OnGUI() {
 		if (displayNextButton) {
+			/*continueButton.gameObject.SetActive(true);
+			continueButton.onClick.AddListener( () => continueClicked());*/
 			if (GUI.Button(new Rect(375, 225, 268, 25), "Continue")) {
 				continueDialogue();
 				displayNextButton = false;
 			}
 		}
 		if (interactionOver){
-			hideButtons();
 			if (GUI.Button(new Rect(375, 225, 268, 25), "Return")) {
-				SceneManager.LoadScene("SchoolOutdoors");
+				SceneManager.LoadScene("CMTandExercise");
 			}
+
 		}
 	}
 
@@ -243,14 +259,15 @@ public class Level1bManager : MonoBehaviour {
 	// Write text to screen
 	IEnumerator TypeText (string message) {
 		if (mainCharacterTurn) {
+			Debug.Log("main");
 			mainCharacterSpeechBalloon.enabled = true;
 			for (int i = 0; i < message.Length; i++) {
 				mainCharacterSpeech.text += message[i];
 				yield return new WaitForSeconds (letterPause);
 			}
 		} else{
+			cmtCharacterSpeechBalloon.enabled = true;
 			for (int i = 0; i < message.Length; i++) {
-				cmtCharacterSpeechBalloon.enabled = true;
 				cmtCharacterSpeech.text += message[i];
 				yield return new WaitForSeconds (letterPause);
 			}
@@ -262,8 +279,8 @@ public class Level1bManager : MonoBehaviour {
 	}
 
 	IEnumerator writeCMTspeech (string message) {
-		cmtCharacterSpeech.text = "";
 		cmtCharacterSpeechBalloon.enabled = true;
+		clearText(cmtCharacterSpeech);
 		for (int i = 0; i < message.Length; i++) {
 			cmtCharacterSpeech.text += message[i];
 			yield return new WaitForSeconds (letterPause);
@@ -273,7 +290,7 @@ public class Level1bManager : MonoBehaviour {
 			askQuestions();
 		}
 		else {
-			Debug.Log("acabou");
+			hideButtons();
 			interactionOver = true;
 		}
 
