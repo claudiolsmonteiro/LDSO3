@@ -105,7 +105,7 @@ public class Level1Manager : MonoBehaviour {
 		}
 		if (displayContinue) {
 			if (GUI.Button(new Rect(375, 225, 268, 25), "Continue")) {
-				SceneManager.LoadScene("LookingForAPlayer");
+				SceneManager.LoadScene("Level1a-LookingForAPlayer");
 			}
 		}
 

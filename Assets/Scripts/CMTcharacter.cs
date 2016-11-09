@@ -7,7 +7,7 @@ public class CMTcharacter : MonoBehaviour {
 
 	void OnTriggerEnter2D()
 	{
-			SceneManager.LoadScene("CMTcharacterInteraction");
+			SceneManager.LoadScene("Level1b-CMTcharacterInteraction");
 	}
 
 
