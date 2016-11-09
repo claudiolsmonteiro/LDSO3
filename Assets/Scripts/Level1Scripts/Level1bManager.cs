@@ -82,6 +82,7 @@ public class Level1bManager : MonoBehaviour {
 	private bool interactionOver;
 	private int mainCharacterDialogueCounter;
 	private int cmtCharacterDialogueCounter;
+	private int questionsIterator;
 
 	// GUI styling
 	private GUIStyle style, continueStyle;
@@ -122,7 +123,7 @@ public class Level1bManager : MonoBehaviour {
 		cmtCharacterSpeechBalloon.enabled = false;
 
 		// initialize questions and answers
-		// Should be done with the xmlParser
+		// TODO: Should be done with the xmlParser
 	 questionsList = new List<string[]>();
 	 questionsList.Add(questionChoices1);
 	 questionsList.Add(questionChoices2);
@@ -166,20 +167,26 @@ public class Level1bManager : MonoBehaviour {
 	}
 
 
-	private int questionsIterator;
 	void askQuestions() {
-		Debug.Log("questionsIterator: " + questionsIterator);
 		loadQuestions(questionsList[questionsIterator]);
-
 	}
 
-
+	bool responseControl = false;
 	void getCMTresponse(int number) {
-		// Clean Everything
-		clearText(cmtCharacterSpeech);
-		// Write Text
-		message =	cmtCharacterSpeechList[questionsIterator][number];
-		StartCoroutine(writeCMTspeech(message));
+
+		if (!responseControl) {
+			Debug.Log("questionsIterator: " + questionsIterator);
+			// Clean Everything
+			clearText(cmtCharacterSpeech);
+			// Write Text
+			message =	cmtCharacterSpeechList[questionsIterator][number];
+
+			StartCoroutine(writeCMTspeech(message));
+		}
+		if (questionsIterator == cmtCharacterSpeechList.Count-1) {
+			responseControl = true;
+		}
+
 	}
 
 
@@ -228,20 +235,9 @@ public class Level1bManager : MonoBehaviour {
 		getCMTresponse(buttonNumber);
 	}
 
-	void continueClicked() {
-		displayNextButton = false;
-		continueButton.gameObject.SetActive(false);
-		continueDialogue();
-	}
-
-	void returnClicked() {
-
-	}
 
 	void OnGUI() {
 		if (displayNextButton) {
-			/*continueButton.gameObject.SetActive(true);
-			continueButton.onClick.AddListener( () => continueClicked());*/
 			if (GUI.Button(new Rect(375, 225, 268, 25), "Continue")) {
 				continueDialogue();
 				displayNextButton = false;
@@ -259,7 +255,6 @@ public class Level1bManager : MonoBehaviour {
 	// Write text to screen
 	IEnumerator TypeText (string message) {
 		if (mainCharacterTurn) {
-			Debug.Log("main");
 			mainCharacterSpeechBalloon.enabled = true;
 			for (int i = 0; i < message.Length; i++) {
 				mainCharacterSpeech.text += message[i];
@@ -278,7 +273,12 @@ public class Level1bManager : MonoBehaviour {
 		displayNextButton = true;
 	}
 
+
+
 	IEnumerator writeCMTspeech (string message) {
+		if (interactionOver) {
+			return true;
+		}
 		cmtCharacterSpeechBalloon.enabled = true;
 		clearText(cmtCharacterSpeech);
 		for (int i = 0; i < message.Length; i++) {
