@@ -179,7 +179,6 @@ public class Level1bManager : MonoBehaviour
         loadQuestions(questionsList[questionsIterator]);
     }
 
-    bool responseControl = false;
 
     void getCMTresponse(int number)
     {
