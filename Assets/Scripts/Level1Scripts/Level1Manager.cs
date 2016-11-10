@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Assets.Scripts.ParserXML;
+using System;
 
 public class Level1Manager : MonoBehaviour {
 
@@ -10,7 +12,7 @@ public class Level1Manager : MonoBehaviour {
 	public float letterPause = 0.05f;
 	string message;
   Text textComp;
-
+  
 	// Dialogue Variables
 	public string[] messages = {"Hi, bitch! Do you want to play football with us?", "Great! We're missing a player. Do you want to help us find one?", "Cool! See you later!"};
 	public string[] replies1 = {"Hi! Yeah, that sound's great", "Hi! Thank you, but no."};
@@ -33,8 +35,13 @@ public class Level1Manager : MonoBehaviour {
 	// Initializ
 	void Start() {
 
-		// Initialize variables
-		initializeCtrlVariables();
+        Parser cenas = new Parser();
+       
+        
+
+
+        // Initialize variables
+        initializeCtrlVariables();
 
 		textComp = GameObject.Find("otherText").GetComponent<Text>();
 
@@ -112,7 +119,8 @@ public class Level1Manager : MonoBehaviour {
 	}
 
 	void initializeCtrlVariables() {
-		dialogueCounter = 0;
+        Debug.Log("Hello");
+        dialogueCounter = 0;
 		answersCounter = 0;
 		interactionOver = false;
 		displayReturn = false;
@@ -130,7 +138,7 @@ public class Level1Manager : MonoBehaviour {
 		if (interactionOver) {
 			displayChoices = false;
 			displayReturn = true;
-			return true;
+			//return true;
 		}
 		 else if (dialogueCounter == messages.Length) {
 			 displayContinue = true;

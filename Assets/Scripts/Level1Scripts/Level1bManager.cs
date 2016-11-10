@@ -304,7 +304,7 @@ public class Level1bManager : MonoBehaviour
     {
         if (interactionOver)
         {
-            return true;
+            //return true;
         }
         cmtCharacterSpeechBalloon.enabled = true;
         clearText(cmtCharacterSpeech);
