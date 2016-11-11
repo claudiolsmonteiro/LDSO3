@@ -78,12 +78,14 @@ public class Level1bManager : MonoBehaviour
 
     // Control Variables
     private bool mainCharacterTurn;
-    private bool displayChoices = true;
-    private bool displayNextButton = false;
+    private bool displayChoices;
+    private bool displayNextButton;
     private bool interactionOver;
     private int mainCharacterDialogueCounter;
     private int cmtCharacterDialogueCounter;
     private int questionsIterator;
+    private bool writing;
+
 
     // GUI styling
     private GUIStyle style, continueStyle;
@@ -97,6 +99,9 @@ public class Level1bManager : MonoBehaviour
         cmtCharacterDialogueCounter = 0;
         mainCharacterTurn = true;
         interactionOver = false;
+        writing = false;
+        displayChoices = true;
+        displayNextButton = false;
         questionsIterator = 0;
 
         // Get Character's Lines
@@ -281,7 +286,7 @@ public class Level1bManager : MonoBehaviour
                 yield return new WaitForSeconds(letterPause);
             }
         }
-        else
+        else if (!interactionOver)
         {
             cmtCharacterSpeechBalloon.enabled = true;
             for (int i = 0; i < message.Length; i++)
@@ -299,29 +304,32 @@ public class Level1bManager : MonoBehaviour
     }
 
 
-
     IEnumerator writeCMTspeech(string message)
     {
-        if (interactionOver)
+        if (!writing)
         {
-            //return true;
-        }
-        cmtCharacterSpeechBalloon.enabled = true;
-        clearText(cmtCharacterSpeech);
-        for (int i = 0; i < message.Length; i++)
-        {
-            cmtCharacterSpeech.text += message[i];
-            yield return new WaitForSeconds(letterPause);
-        }
-        if (questionsIterator < (questionsList.Count - 1))
-        {
-            questionsIterator++;
-            askQuestions();
-        }
-        else
-        {
-            hideButtons();
-            interactionOver = true;
+            writing = true;
+            if (!interactionOver)
+            {
+                cmtCharacterSpeechBalloon.enabled = true;
+                clearText(cmtCharacterSpeech);
+                for (int i = 0; i < message.Length; i++)
+                {
+                    cmtCharacterSpeech.text += message[i];
+                    yield return new WaitForSeconds(letterPause);
+                }
+                writing = false;
+                if (questionsIterator == cmtCharacterSpeechList.Count - 1)
+                {
+                    hideButtons();
+                    interactionOver = true;
+                }
+                else if (questionsIterator < (questionsList.Count - 1))
+                {
+                    questionsIterator++;
+                    askQuestions();
+                }
+            }
         }
 
     }
