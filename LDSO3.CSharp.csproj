@@ -64,12 +64,19 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\ChangeScene.cs" />
     <Compile Include="Assets\Scripts\CharacterInteraction\CMTCharacterInteraction.cs" />
     <Compile Include="Assets\Scripts\CharacterInteraction\FootballCharacterInteraction.cs" />
     <Compile Include="Assets\Scripts\CharacterMovementScript.cs" />
+    <Compile Include="Assets\Scripts\ControllingCameraAspectScript.cs" />
     <Compile Include="Assets\Scripts\Exit.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Level1Scripts\Level1Manager.cs" />
