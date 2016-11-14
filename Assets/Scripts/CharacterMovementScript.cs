@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class CharacterMovementScript : MonoBehaviour {
 
@@ -119,6 +118,13 @@ public class CharacterMovementScript : MonoBehaviour {
 
     public void Action()
     {
+        var characterCollider = GameObject.Find("characterCollider");
 
+        var characterInteractionScript = characterCollider.GetComponent<CharacterInteraction>();
+
+        if (characterInteractionScript.inRange)
+        {
+            SceneManager.LoadScene(characterInteractionScript.NextScene.name);
+        }
     }
 }

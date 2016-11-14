@@ -74,10 +74,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\ChangeScene.cs" />
-    <Compile Include="Assets\Scripts\CharacterInteraction\CMTCharacterInteraction.cs" />
-    <Compile Include="Assets\Scripts\CharacterInteraction\FootballCharacterInteraction.cs" />
+    <Compile Include="Assets\Scripts\CharacterInteraction.cs" />
     <Compile Include="Assets\Scripts\CharacterMovementScript.cs" />
-    <Compile Include="Assets\Scripts\ControllingCameraAspectScript.cs" />
     <Compile Include="Assets\Scripts\Exit.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Level1Scripts\Level1Manager.cs" />

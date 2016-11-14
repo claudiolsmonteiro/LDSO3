@@ -9,7 +9,7 @@ public class TouchControls : MonoBehaviour {
     void Start ()
     {
         player = FindObjectOfType<CharacterMovementScript>();
-	  }
+	}
 
 
     public void UpArrow()

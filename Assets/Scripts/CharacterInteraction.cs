@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class CMTCharacterInteraction : MonoBehaviour {
-
-    bool inRange = false;
+public class CharacterInteraction : MonoBehaviour
+{
+    public Object NextScene;
+    public bool inRange = false;
 
     void OnTriggerEnter2D()
     {
@@ -21,7 +21,7 @@ public class CMTCharacterInteraction : MonoBehaviour {
     {
         Event e = Event.current;
         if (e.isKey && e.keyCode == KeyCode.Return && inRange)
-            SceneManager.LoadScene("Level1b-CMTcharacterInteraction");
+            SceneManager.LoadScene(NextScene.name);
 
     }
 }
