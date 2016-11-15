@@ -3,44 +3,43 @@ using System.Collections;
 
 public class TouchControls : MonoBehaviour {
 
-    private CharacterMovementScript player;
+    private CharacterMovementScript _player;
 
     // Use this for initialization
     void Start ()
     {
-        player = FindObjectOfType<CharacterMovementScript>();
+        _player = FindObjectOfType<CharacterMovementScript>();
 	}
-
 
     public void UpArrow()
     {
-        player.MoveUp();
+        _player.MoveUp();
     }
 
     public void LeftArrow()
     {
-        player.MoveLeft();
+        _player.MoveLeft();
     }
 
     public void RightArrow()
     {
-        player.MoveRight();
+        _player.MoveRight();
     }
 
     public void DownArrow()
     {
-        player.MoveDown();
+        _player.MoveDown();
     }
 
     public void UnpressedArrow()
     {
-        player.Stop();
-        player.moving = -2;
+        _player.Stop();
+        _player.moving = -2;
     }
 
     public void Action()
     {
-        player.Action();
+        _player.Action();
     }
 
 

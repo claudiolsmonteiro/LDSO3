@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class CharacterMovementScript : MonoBehaviour {
@@ -119,12 +120,12 @@ public class CharacterMovementScript : MonoBehaviour {
     public void Action()
     {
         var characterCollider = GameObject.Find("characterCollider");
+        
+        CharacterInteraction characterInteractionScript = characterCollider.GetComponent(typeof(CharacterInteraction)) as CharacterInteraction;
 
-        var characterInteractionScript = characterCollider.GetComponent<CharacterInteraction>();
-
-        if (characterInteractionScript.inRange)
+        if (characterInteractionScript != null && characterInteractionScript.InRange)
         {
-            SceneManager.LoadScene(characterInteractionScript.NextScene.name);
+            SceneManager.LoadScene(characterInteractionScript.NextScene);
         }
     }
 }

@@ -3,25 +3,29 @@ using UnityEngine.SceneManagement;
 
 public class CharacterInteraction : MonoBehaviour
 {
-    public Object NextScene;
-    public bool inRange = false;
+    public string NextScene;
+    public bool InRange;
 
-    void OnTriggerEnter2D()
+    public void Start()
     {
-        inRange = true;
+        InRange = false;
     }
 
-    void OnTriggerExit2D()
+    public void OnTriggerEnter2D()
     {
-        inRange = false;
+        InRange = true;
     }
 
+    public void OnTriggerExit2D()
+    {
+        InRange = false;
+    }
 
-    void OnGUI()
+    public void OnGUI()
     {
         Event e = Event.current;
-        if (e.isKey && e.keyCode == KeyCode.Return && inRange)
-            SceneManager.LoadScene(NextScene.name);
-
+        if (e.isKey && e.keyCode == KeyCode.Return && InRange)
+            SceneManager.LoadScene(NextScene);
     }
+
 }

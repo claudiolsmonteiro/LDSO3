@@ -4,14 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Assets.Scripts.ParserXML;
-using System;
 
 public class Level1Manager : MonoBehaviour {
 
 	// TextTyper variables
-	public float letterPause = 0.05f;
+	public float LetterPause = 0.05f;
 	string message;
-  Text textComp;
+    Text textComp;
   
 	// Dialogue Variables
 	public string[] messages = {"Hi, bitch! Do you want to play football with us?", "Great! We're missing a player. Do you want to help us find one?", "Cool! See you later!"};
@@ -35,7 +34,7 @@ public class Level1Manager : MonoBehaviour {
 	// Initializ
 	void Start() {
 
-        Parser cenas = new Parser();
+        //Parser cenas = new Parser();
        
         
 
@@ -133,7 +132,7 @@ public class Level1Manager : MonoBehaviour {
 	IEnumerator TypeText (string message) {
 		for (int i = 0; i < message.Length; i++) {
 			textComp.text += message[i];
-			yield return new WaitForSeconds (letterPause);
+			yield return new WaitForSeconds (LetterPause);
 		}
 		if (interactionOver) {
 			displayChoices = false;

@@ -1,10 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/SchoolOutdoors.unity
-  isLoaded: 0
-  isActive: 0
-- path: Assets/Scenes/SoundOptions.unity
-  isLoaded: 0
-  isActive: 0
-- path: Assets/Scenes/Level1/Level1a-footballInteraction.unity
+- path: Assets/Scenes/Level1/Level1b-CMTcharacterInteraction.unity
   isLoaded: 1
   isActive: 1
