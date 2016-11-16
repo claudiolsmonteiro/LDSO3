@@ -35,8 +35,7 @@ public class Level1Manager : MonoBehaviour {
 	void Start() {
 
         //Parser cenas = new Parser();
-       
-        
+
 
 
         // Initialize variables

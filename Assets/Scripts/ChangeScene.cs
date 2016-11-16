@@ -11,4 +11,9 @@ public class ChangeScene : MonoBehaviour {
         Parser cenas = new Parser();
     }
 
+    public void setCharacter(string character)
+    {
+        PlayerPrefs.SetString("character", character);
+    }
+
 }

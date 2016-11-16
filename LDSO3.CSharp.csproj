@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\ChangeScene.cs" />
     <Compile Include="Assets\Scripts\CharacterInteraction.cs" />
     <Compile Include="Assets\Scripts\CharacterMovementScript.cs" />
+    <Compile Include="Assets\Scripts\CharacterScript.cs" />
     <Compile Include="Assets\Scripts\Exit.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Level1Scripts\Level1Manager.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Assets\Scripts\ParserXML\NPC.cs" />
     <Compile Include="Assets\Scripts\ParserXML\Parser.cs" />
     <Compile Include="Assets\Scripts\RandomFact.cs" />
+    <Compile Include="Assets\Scripts\SwapCharacterSprite.cs" />
     <Compile Include="Assets\Scripts\TouchControls.cs" />
   </ItemGroup>
   <ItemGroup>
