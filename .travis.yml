@@ -3,7 +3,7 @@ node_js:
    - "6"
     
 script:
-  - cd 1in2500Website
+  - cd website1in2500
   
 before_install:
     - npm install -g npm
@@ -15,4 +15,4 @@ deploy:
  app: website1in2500
  on:
    repo: momoepro/LDSO3
-   branch: master
+   branch: website
