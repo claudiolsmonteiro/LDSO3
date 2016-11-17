@@ -22,7 +22,8 @@ module.exports = {
 };
 
 function getAllPlayers(req, res, next) {
-    db.any('select * from players')
+    //db.any('select p.id,p.name,p.age,p.sex, s.points from players as p, scores as s where p.id = s.id')
+    db.any('select id,name,age,sex, points from players NATURAL JOIN scores')
         .then(function (data) {
             res.status(200)
                 .json({
@@ -38,7 +39,7 @@ function getAllPlayers(req, res, next) {
 
 function getSinglePlayer(req, res, next) {
     var playerID = parseInt(req.params.id);
-    db.one('select * from players where id = $1', playerID)
+    db.many('select id,name,age,sex, points from players NATURAL JOIN scores where id = $1', playerID)
         .then(function (data) {
             res.status(200)
                 .json({
@@ -51,3 +52,24 @@ function getSinglePlayer(req, res, next) {
             return next(err);
         });
 }
+
+/*
+function createPlayer(req, res, next) {
+    req.body.age = parseInt(req.body.age);
+    db.none('insert into players(name, age, sex)' +
+        'values(${name},${age}, ${sex})',
+        req.body)
+        .then(function () {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    message: 'Inserted one player'
+                });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
+}
+
+
+*/
