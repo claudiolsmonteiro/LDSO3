@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -119,13 +120,27 @@ public class CharacterMovementScript : MonoBehaviour {
 
     public void Action()
     {
-        var characterCollider = GameObject.Find("characterCollider");
-        
-        CharacterInteraction characterInteractionScript = characterCollider.GetComponent(typeof(CharacterInteraction)) as CharacterInteraction;
+        var interactiveCharacters = GameObject.Find("InteractiveCharacters");
 
-        if (characterInteractionScript != null && characterInteractionScript.InRange)
+        List<InteractionNotificationScript> interactionNotification = new List<InteractionNotificationScript>();
+        List<GameObject> interactiveCharactersList = new List<GameObject>();
+
+        foreach (Transform character in interactiveCharacters.transform)
         {
-            SceneManager.LoadScene(characterInteractionScript.NextScene);
+            interactionNotification.Add(character.GetComponent(typeof(InteractionNotificationScript)) as InteractionNotificationScript);
+            interactiveCharactersList.Add(character.gameObject);
+        }
+
+        for (int i = 0; i < interactiveCharactersList.Count; i++)
+        {
+            Debug.Log(interactiveCharactersList[i]);
+            CharacterInteraction characterInteractionScript = interactiveCharactersList[i].GetComponentInChildren(typeof(CharacterInteraction)) as CharacterInteraction;
+            Debug.Log(interactionNotification[i].Interactable);
+
+            if (characterInteractionScript != null && characterInteractionScript.InRange && interactionNotification[i].Interactable)
+            {
+                SceneManager.LoadScene(characterInteractionScript.NextScene);
+            }
         }
     }
 }

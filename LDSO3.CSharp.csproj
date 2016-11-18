@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\CharacterScript.cs" />
     <Compile Include="Assets\Scripts\Exit.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\InteractionNotificationScript.cs" />
     <Compile Include="Assets\Scripts\Level1Scripts\Level1Manager.cs" />
     <Compile Include="Assets\Scripts\Level1Scripts\Level1bManager.cs" />
     <Compile Include="Assets\Scripts\ParserXML\Dialogue.cs" />
