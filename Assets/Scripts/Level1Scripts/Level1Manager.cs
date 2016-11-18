@@ -1,153 +1,151 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Assets.Scripts.ParserXML;
+using UnityEngine.UI;
 
-public class Level1Manager : MonoBehaviour {
+namespace Assets.Scripts.Level1Scripts
+{
+    public class Level1Manager : MonoBehaviour {
 
-	// TextTyper variables
-	public float LetterPause = 0.05f;
-	string message;
-    Text textComp;
+        // TextTyper variables
+        public float LetterPause = 0.05f;
+        string _message;
+        Text _textComp;
   
-	// Dialogue Variables
-	public string[] messages = {"Hi, bitch! Do you want to play football with us?", "Great! We're missing a player. Do you want to help us find one?", "Cool! See you later!"};
-	public string[] replies1 = {"Hi! Yeah, that sound's great", "Hi! Thank you, but no."};
-	public string[] replies2 = {"Sure, I'll look for somebody", "Actually, I think I'll maybe join you later"};
-	private List<string[]> answersList;
-	private Button answerA;
-	private Button answerB;
-	private int answersCounter;
-	private int dialogueCounter;
+        // Dialogue Variables
+        public string[] Messages = {"Hi, bitch! Do you want to play football with us?", "Great! We're missing a player. Do you want to help us find one?", "Cool! See you later!"};
+        public string[] Replies1 = {"Hi! Yeah, that sound's great", "Hi! Thank you, but no."};
+        public string[] Replies2 = {"Sure, I'll look for somebody", "Actually, I think I'll maybe join you later"};
+        private List<string[]> _answersList;
+        private Button _answerA;
+        private Button _answerB;
+        private int _answersCounter;
+        private int _dialogueCounter;
 
-	// Control Variables
-	private bool displayReturn;
-	public bool displayChoices;
-	public bool displayContinue;
-	private bool interactionOver;
+        // Control Variables
+        private bool _displayReturn;
+        public bool DisplayChoices;
+        public bool DisplayContinue;
+        private bool _interactionOver;
 
-	// GUI styling
-	private GUIStyle style, continueStyle;
+        // GUI styling
+        private GUIStyle _style, _continueStyle;
 
-	// Initializ
-	void Start() {
+        // Initializ
+        public void Start() {
 
-        //Parser cenas = new Parser();
+            //Parser cenas = new Parser();
 
+            // Initialize variables
+            InitializeCtrlVariables();
 
+            _textComp = GameObject.Find("otherText").GetComponent<Text>();
 
-        // Initialize variables
-        initializeCtrlVariables();
+            // Load possible actions
+            _answersList = new List<string[]>();
+            _answersList.Add(Replies1);
+            _answersList.Add(Replies2);
 
-		textComp = GameObject.Find("otherText").GetComponent<Text>();
+            // Initialize buttons
+            _answerA = GameObject.Find("answerA").GetComponent<Button>();
+            _answerB = GameObject.Find("answerB").GetComponent<Button>();
 
-		// Load possible actions
-		answersList = new List<string[]>();
-		answersList.Add(replies1);
-		answersList.Add(replies2);
+            // Start actions
+            HideButtons();
+            ContinueDialogue();
+        }
 
-		// Initialize buttons
-		answerA = GameObject.Find("answerA").GetComponent<Button>();
-		answerB = GameObject.Find("answerB").GetComponent<Button>();
+        void HideButtons() {
+            _answerA.gameObject.SetActive(false);
+            _answerB.gameObject.SetActive(false);
+        }
 
-		// Start actions
-		hideButtons();
-		continueDialogue();
-	}
+        void ClearText() {
+            _textComp.text = "";
+        }
 
-	void hideButtons() {
-		answerA.gameObject.SetActive(false);
-		answerB.gameObject.SetActive(false);
-	}
+        void ContinueDialogue() {
+            if (_interactionOver || _dialogueCounter == Messages.Length){
+                return;
+            }
+            if (!_textComp.Equals("")) {
+                ClearText();
+            }
+            HideButtons();
+            _message = Messages[_dialogueCounter];
+            StartCoroutine(TypeText(_message));
+            _dialogueCounter++;
+        }
 
-	void clearText() {
-		textComp.text = "";
-	}
+        void SaidNo() {
+            if (_interactionOver){
+                return;
+            }
+            ClearText();
+            HideButtons();
+            _message = "Oh, ok. Maybe I'll see you later!";
+            StartCoroutine(TypeText(_message));
+            _interactionOver=true;
+        }
 
-	void continueDialogue() {
-		if (interactionOver || dialogueCounter == messages.Length){
-			return;
-		}
-		if (!textComp.Equals("")) {
-			clearText();
-		}
-		hideButtons();
-		message = messages[dialogueCounter];
-		StartCoroutine(TypeText(message));
-		dialogueCounter++;
-	}
+        void DisplayAnswers(string[] arr) {
+            _answerA.GetComponentInChildren<Text>().text = arr[0];
+            _answerA.onClick.AddListener( () => ContinueDialogue());
+            _answerA.gameObject.SetActive(true);
 
+            _answerB.GetComponentInChildren<Text>().text = arr[1];
+            _answerB.onClick.AddListener( () => SaidNo());
+            _answerB.gameObject.SetActive(true);
+            _answersCounter++;
+        }
 
-	void saidNo() {
-		if (interactionOver){
-			return;
-		}
-		clearText();
-		hideButtons();
-		message = "Oh, ok. Maybe I'll see you later!";
-		StartCoroutine(TypeText(message));
-		interactionOver=true;
-	}
+        public void OnGUI() {
+            if (_displayReturn) {
+                if (GUI.Button(new Rect(375, 225, 268, 25), "Return")) {
+                    SceneManager.LoadScene("SchoolOutdoors");
+                }
+            }
+            if (DisplayContinue) {
+                if (GUI.Button(new Rect(375, 225, 268, 25), "Continue")) {
+                    SceneManager.LoadScene("Level1a-LookingForAPlayer");
+                }
+            }
 
-	void displayAnswers(string[] arr) {
-		answerA.GetComponentInChildren<Text>().text = arr[0];
-		answerA.onClick.AddListener( () => continueDialogue());
-		answerA.gameObject.SetActive(true);
+        }
 
-		answerB.GetComponentInChildren<Text>().text = arr[1];
-		answerB.onClick.AddListener( () => saidNo());
-		answerB.gameObject.SetActive(true);
-		answersCounter++;
-	}
-
-	void OnGUI() {
-		if (displayReturn) {
-			if (GUI.Button(new Rect(375, 225, 268, 25), "Return")) {
-				SceneManager.LoadScene("SchoolOutdoors");
-			}
-		}
-		if (displayContinue) {
-			if (GUI.Button(new Rect(375, 225, 268, 25), "Continue")) {
-				SceneManager.LoadScene("Level1a-LookingForAPlayer");
-			}
-		}
-
-	}
-
-	void initializeCtrlVariables() {
-        Debug.Log("Hello");
-        dialogueCounter = 0;
-		answersCounter = 0;
-		interactionOver = false;
-		displayReturn = false;
-		displayChoices = false;
-		displayContinue = false;
-	}
+        void InitializeCtrlVariables() {
+            Debug.Log("Hello");
+            _dialogueCounter = 0;
+            _answersCounter = 0;
+            _interactionOver = false;
+            _displayReturn = false;
+            DisplayChoices = false;
+            DisplayContinue = false;
+        }
 
 
-	// Write text to screen
-	IEnumerator TypeText (string message) {
-		for (int i = 0; i < message.Length; i++) {
-			textComp.text += message[i];
-			yield return new WaitForSeconds (LetterPause);
-		}
-		if (interactionOver) {
-			displayChoices = false;
-			displayReturn = true;
-			//return true;
-		}
-		 else if (dialogueCounter == messages.Length) {
-			 displayContinue = true;
-		 }
-		 else {
-			displayAnswers(answersList[answersCounter]);
-		}
-	}
+        // Write text to screen
+        IEnumerator TypeText (string message) {
+            for (int i = 0; i < message.Length; i++) {
+                _textComp.text += message[i];
+                yield return new WaitForSeconds (LetterPause);
+            }
+            if (_interactionOver) {
+                DisplayChoices = false;
+                _displayReturn = true;
+                //return true;
+            }
+            else if (_dialogueCounter == Messages.Length) {
+                DisplayContinue = true;
+            }
+            else {
+                DisplayAnswers(_answersList[_answersCounter]);
+            }
+        }
 
-	// Update is called once per frame
-	void Update () {
-
-	}
+        // Update is called once per frame
+        public void Update () {
+        }
+    }
 }

@@ -1,23 +1,24 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections;
 
-public class CharacterScript : MonoBehaviour
+namespace Assets.Scripts
 {
-    public String Character;
-    protected Animator Animator;
-	// Use this for initialization
-	void Start () {
-	    if (PlayerPrefs.HasKey("character"))
-	    {
-	        Character = PlayerPrefs.GetString("character");
-	        Animator = GetComponent<Animator>();
-            Animator.runtimeAnimatorController = Resources.Load("Animators/" + Character + "OverrideAnimator") as RuntimeAnimatorController;
+    public class CharacterScript : MonoBehaviour
+    {
+        public String Character;
+        protected Animator Animator;
+        // Use this for initialization
+        public void Start () {
+            if (PlayerPrefs.HasKey("character"))
+            {
+                Character = PlayerPrefs.GetString("character");
+                Animator = GetComponent<Animator>();
+                Animator.runtimeAnimatorController = Resources.Load("Animators/" + Character + "OverrideAnimator") as RuntimeAnimatorController;
+            }
         }
-	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+        // Update is called once per frame
+        public void Update () {
+        }
+    }
 }

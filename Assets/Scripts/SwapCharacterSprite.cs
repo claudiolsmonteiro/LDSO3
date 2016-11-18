@@ -1,33 +1,34 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
-public class SwapCharacterSprite : MonoBehaviour
+namespace Assets.Scripts
 {
+    public class SwapCharacterSprite : MonoBehaviour
+    {
 
-    protected Image CharacterImage;
-	// Use this for initialization
-	void Start ()
-	{
-        CharacterImage = gameObject.GetComponent<Image>();
-
-        if (PlayerPrefs.HasKey("character"))
+        protected Image CharacterImage;
+        // Use this for initialization
+        public void Start ()
         {
-            string characterName = PlayerPrefs.GetString("character");
+            CharacterImage = gameObject.GetComponent<Image>();
 
-            if (characterName == "Jimmy")
+            if (PlayerPrefs.HasKey("character"))
             {
-                CharacterImage.sprite = Resources.Load("Sprites/Jimmy_front", typeof(Sprite)) as Sprite;
-            }
-            else
-            {
-                CharacterImage.sprite = Resources.Load("Sprites/Ashley_front", typeof(Sprite)) as Sprite;
+                string characterName = PlayerPrefs.GetString("character");
+
+                if (characterName == "Jimmy")
+                {
+                    CharacterImage.sprite = Resources.Load("Sprites/Jimmy_front", typeof(Sprite)) as Sprite;
+                }
+                else
+                {
+                    CharacterImage.sprite = Resources.Load("Sprites/Ashley_front", typeof(Sprite)) as Sprite;
+                }
             }
         }
+	
+        // Update is called once per frame
+        public void Update () {
+        }
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

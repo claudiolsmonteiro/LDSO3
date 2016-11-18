@@ -1,19 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
-using Assets.Scripts.ParserXML;
 
-public class ChangeScene : MonoBehaviour {
+namespace Assets.Scripts
+{
+    public class ChangeScene : MonoBehaviour {
 
-	// Change Scene
-	public void ChangeToScene (string scene) {
-        SceneManager.LoadScene(scene);
-        //Parser cenas = new Parser();
+        // Change Scene
+        public void ChangeToScene (string scene) {
+            SceneManager.LoadScene(scene);
+            //Parser cenas = new Parser();
+        }
+
+        public void SetCharacter(string character)
+        {
+            PlayerPrefs.SetString("character", character);
+        }
+
     }
-
-    public void setCharacter(string character)
-    {
-        PlayerPrefs.SetString("character", character);
-    }
-
 }

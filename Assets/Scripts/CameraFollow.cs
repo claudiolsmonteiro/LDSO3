@@ -1,27 +1,30 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using JetBrains.Annotations;
+using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+namespace Assets.Scripts
 {
-    public Transform LeftBorder;
-    public Transform RightBorder;
-    public Transform BottomBorder;
-    public Transform UpperBorder;
-    private Transform _character;
-
-    void Start()
+    public class CameraFollow : MonoBehaviour
     {
-        _character = GameObject.Find("Character").transform;
-    }
+        public Transform LeftBorder;
+        public Transform RightBorder;
+        public Transform BottomBorder;
+        public Transform UpperBorder;
+        private Transform _character;
 
-    void Update()
-    {
-        Vector3 newPosition = transform.position;
-        newPosition.x = _character.position.x;
-        newPosition.x = Mathf.Clamp(newPosition.x, LeftBorder.position.x, RightBorder.position.x);
-        newPosition.y = _character.position.y;
-        newPosition.y = Mathf.Clamp(newPosition.y, BottomBorder.position.y, UpperBorder.position.y);
+        public void Start()
+        {
+            _character = GameObject.Find("Character").transform;
+        }
+
+        public void Update()
+        {
+            Vector3 newPosition = transform.position;
+            newPosition.x = _character.position.x;
+            newPosition.x = Mathf.Clamp(newPosition.x, LeftBorder.position.x, RightBorder.position.x);
+            newPosition.y = _character.position.y;
+            newPosition.y = Mathf.Clamp(newPosition.y, BottomBorder.position.y, UpperBorder.position.y);
     
-        transform.position = newPosition;
+            transform.position = newPosition;
+        }
     }
 }

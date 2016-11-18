@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Exit : MonoBehaviour {
+namespace Assets.Scripts
+{
+    public class Exit : MonoBehaviour {
         
-    public void exitApp()
-    {
-        Application.Quit();
-    }
+        public void ExitApp()
+        {
+            Application.Quit();
+        }
 
+    }
 }

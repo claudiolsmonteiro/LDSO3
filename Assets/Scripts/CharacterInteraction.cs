@@ -1,31 +1,34 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CharacterInteraction : MonoBehaviour
+namespace Assets.Scripts
 {
-    public string NextScene;
-    public bool InRange;
-
-    public void Start()
+    public class CharacterInteraction : MonoBehaviour
     {
-        InRange = false;
-    }
+        public string NextScene;
+        public bool InRange;
 
-    public void OnTriggerEnter2D()
-    {
-        InRange = true;
-    }
+        public void Start()
+        {
+            InRange = false;
+        }
 
-    public void OnTriggerExit2D()
-    {
-        InRange = false;
-    }
+        public void OnTriggerEnter2D()
+        {
+            InRange = true;
+        }
 
-    public void OnGUI()
-    {
-        Event e = Event.current;
-        if (e.isKey && e.keyCode == KeyCode.Return && InRange)
-            SceneManager.LoadScene(NextScene);
-    }
+        public void OnTriggerExit2D()
+        {
+            InRange = false;
+        }
 
+        public void OnGUI()
+        {
+            Event e = Event.current;
+            if (e.isKey && e.keyCode == KeyCode.Return && InRange)
+                SceneManager.LoadScene(NextScene);
+        }
+
+    }
 }
