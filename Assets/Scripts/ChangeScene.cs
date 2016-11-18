@@ -8,7 +8,7 @@ public class ChangeScene : MonoBehaviour {
 	// Change Scene
 	public void ChangeToScene (string scene) {
         SceneManager.LoadScene(scene);
-        Parser cenas = new Parser();
+        //Parser cenas = new Parser();
     }
 
     public void setCharacter(string character)
