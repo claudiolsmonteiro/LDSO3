@@ -2,6 +2,3 @@ sceneSetups:
 - path: Assets/Scenes/Level1/Level1a-LookingForAPlayer.unity
   isLoaded: 1
   isActive: 1
-- path: Assets/Scenes/SchoolOutdoors.unity
-  isLoaded: 0
-  isActive: 0
