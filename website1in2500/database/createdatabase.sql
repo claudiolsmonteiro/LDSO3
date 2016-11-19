@@ -10,7 +10,8 @@ CREATE TABLE players (
 
 CREATE TABLE scores (
     id INT REFERENCES players(id),
-    points INT NOT NULL
+    points INT NOT NULL,
+    timeused REAL NOT NULL
 );
 
 -- INSERT players
@@ -33,16 +34,16 @@ INSERT INTO players (name, age, sex) VALUES ('menino7',1,'M');
 
 -- INSERT scores
 
-INSERT INTO scores (id, points ) VALUES (1,50000);
-INSERT INTO scores (id, points ) VALUES (4,3000);
-INSERT INTO scores (id, points ) VALUES (5,5500);
-INSERT INTO scores (id, points ) VALUES (2,5700);
-INSERT INTO scores (id, points ) VALUES (6,54);
-INSERT INTO scores (id, points ) VALUES (1,7145);
-INSERT INTO scores (id, points ) VALUES (1,34411);
-INSERT INTO scores (id, points ) VALUES (3,7614);
-INSERT INTO scores (id, points ) VALUES (7,81723);
-INSERT INTO scores (id, points ) VALUES (10,12371);
+INSERT INTO scores (id, points, timeused ) VALUES (1,50000, 234.24);
+INSERT INTO scores (id, points , timeused ) VALUES (4,3000, 724);
+INSERT INTO scores (id, points, timeused ) VALUES (5,5500,2762.237);
+INSERT INTO scores (id, points, timeused ) VALUES (2,5700,2530);
+INSERT INTO scores (id, points, timeused ) VALUES (6,54,235);
+INSERT INTO scores (id, points, timeused ) VALUES (1,7145,423);
+INSERT INTO scores (id, points, timeused ) VALUES (1,34411,62);
+INSERT INTO scores (id, points, timeused ) VALUES (3,7614, 27);
+INSERT INTO scores (id, points, timeused ) VALUES (7,81723, 279);
+INSERT INTO scores (id, points, timeused ) VALUES (10,12371, 985);
 
 
 
