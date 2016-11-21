@@ -12,7 +12,6 @@ namespace Assets.Scripts.Level1Scripts
         // TextTyper variables
         public float LetterPause = 0.05f;
         string _message;
-        Text _textComp;
 
         //Character's GameObjects
         private Image _mainCharacterSpeechBalloon;
@@ -74,6 +73,12 @@ namespace Assets.Scripts.Level1Scripts
             "You are really rude."
         };
 
+        // 1 -> End of Interaction
+        private List<int[]> _answerController;
+        private readonly int[] _answer1Controller = { 0, 0 };
+        private readonly int[] _answer2Controller = { 1, 1, 0, 0 };
+        private readonly int[] _answer3Controller = { 0, 0, 0, 0 };
+
         private List<string[]> _questionsList;
         private List<string[]> _cmtCharacterSpeechList;
 
@@ -88,12 +93,18 @@ namespace Assets.Scripts.Level1Scripts
         private bool _writing;
 
 
-        // GUI styling
-        private GUIStyle _style, _continueStyle;
 
         // Start interaction
         public void Start()
         {
+            Debug.Log("entrou");
+            //Initialize interaction controller
+            _answerController = new List<int[]>();
+            Debug.Log("answer1 controller");
+            Debug.Log(_answer1Controller);
+            _answerController.Add(_answer1Controller);
+            _answerController.Add(_answer2Controller);
+            _answerController.Add(_answer2Controller);
 
             // initialize control variables
             _mainCharacterDialogueCounter = 0;
@@ -118,6 +129,10 @@ namespace Assets.Scripts.Level1Scripts
             cmtCharacterSpeech = GameObject.Find("CMTcharacterSpeechText").GetComponent<Text>();
             _cmtCharacterSpeechText = _mainCharacterSpeech.text;
 
+
+
+
+
             // Get buttons
             _answerA = GameObject.Find("answerA").GetComponent<Button>();
             _answerB = GameObject.Find("answerB").GetComponent<Button>();
@@ -137,7 +152,7 @@ namespace Assets.Scripts.Level1Scripts
             _questionsList.Add(_questionChoices2);
             _questionsList.Add(_questionChoices3);
 
-            _cmtCharacterSpeechList = new List<string[]> {_answers1, _answers2, _answers3};
+            _cmtCharacterSpeechList = new List<string[]> { _answers1, _answers2, _answers3 };
             Debug.Log("speechList: " + _cmtCharacterSpeechList.Count);
 
 
@@ -190,7 +205,7 @@ namespace Assets.Scripts.Level1Scripts
             ClearText(cmtCharacterSpeech);
             // Write Text
             _message = _cmtCharacterSpeechList[_questionsIterator][number];
-            StartCoroutine(WriteCmTspeech(_message));
+            StartCoroutine(WriteCmTspeech(_message, number));
         }
 
 
@@ -300,7 +315,7 @@ namespace Assets.Scripts.Level1Scripts
         }
 
 
-        IEnumerator WriteCmTspeech(string message)
+        IEnumerator WriteCmTspeech(string message, int number)
         {
             if (!_writing)
             {
@@ -315,7 +330,7 @@ namespace Assets.Scripts.Level1Scripts
                         yield return new WaitForSeconds(LetterPause);
                     }
                     _writing = false;
-                    if (_questionsIterator == _cmtCharacterSpeechList.Count - 1)
+                    if (_questionsIterator == _cmtCharacterSpeechList.Count - 1 || _answerController[_questionsIterator][number] == 1)
                     {
                         HideButtons();
                         _interactionOver = true;

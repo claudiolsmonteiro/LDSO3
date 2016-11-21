@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/CMTfacts/CMTandExercise.unity
+- path: Assets/Scenes/Level1/Level1b-CMTcharacterInteraction.unity
   isLoaded: 1
   isActive: 1

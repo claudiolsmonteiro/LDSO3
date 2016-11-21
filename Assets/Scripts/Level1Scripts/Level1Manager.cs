@@ -29,8 +29,6 @@ namespace Assets.Scripts.Level1Scripts
         public bool DisplayContinue;
         private bool _interactionOver;
 
-        // GUI styling
-        private GUIStyle _style, _continueStyle;
 
         // Initializ
         public void Start() {
