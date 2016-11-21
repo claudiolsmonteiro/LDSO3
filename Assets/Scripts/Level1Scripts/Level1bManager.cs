@@ -33,7 +33,7 @@ namespace Assets.Scripts.Level1Scripts
         private Button _returnButton;
 
         // Dialogue Variables
-        private readonly string[] _mainCharacterLines = { "Hey, new kid! Wanna join us playing football? We need one more player." };
+        private readonly string[] _mainCharacterLines = { "Hey new kid! Wanna join us playing football? We need one more player." };
         private readonly string[] _cmtCharacterLines = { "Hey there, thanks. I would love to play with you, but I cannot play football." };
 
         private readonly string[] _questionChoices1 = {

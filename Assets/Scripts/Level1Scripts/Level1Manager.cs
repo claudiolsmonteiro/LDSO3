@@ -14,7 +14,7 @@ namespace Assets.Scripts.Level1Scripts
         Text _textComp;
   
         // Dialogue Variables
-        public string[] Messages = {"Hi, bitch! Do you want to play football with us?", "Great! We're missing a player. Do you want to help us find one?", "Cool! See you later!"};
+        public string[] Messages = {"Hi! Do you want to play football with us?", "Great! We're missing a player. Do you want to help us find one?", "Cool! See you later!"};
         public string[] Replies1 = {"Hi! Yeah, that sound's great", "Hi! Thank you, but no."};
         public string[] Replies2 = {"Sure, I'll look for somebody", "Actually, I think I'll maybe join you later"};
         private List<string[]> _answersList;

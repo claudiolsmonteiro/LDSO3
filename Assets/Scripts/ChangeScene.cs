@@ -7,7 +7,7 @@ namespace Assets.Scripts
 
         // Change Scene
         public void ChangeToScene (string scene) {
-            SceneManager.LoadScene(scene);
+            SceneManager.LoadScene(scene, LoadSceneMode.Single);
             //Parser cenas = new Parser();
         }
 
