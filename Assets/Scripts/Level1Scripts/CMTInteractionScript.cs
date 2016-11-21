@@ -267,7 +267,7 @@ public class CMTInteractionScript : MonoBehaviour {
     {
         if (_questionsIterator == _cmtCharacterSpeechList.Count - 1)
         {
-            return;
+          
         }
         HideButtons();
         
