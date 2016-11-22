@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class CMTInteractionScript : MonoBehaviour {
+public class CMTInteractionScript : MonoBehaviour
+{
 
     // TextTyper variables
     public float LetterPause = 0.05f;
@@ -19,6 +20,12 @@ public class CMTInteractionScript : MonoBehaviour {
     private Text cmtCharacterSpeech;
     private string _cmtCharacterSpeechText;
 
+    // Reactions
+    private Image _excellent;
+    private Image _good;
+    private Image _bad;
+    private Image _awful;
+
     // Character Response Game Objects
     private Button _answerA;
     private Button _answerB;
@@ -28,47 +35,48 @@ public class CMTInteractionScript : MonoBehaviour {
     private Button _continueButton;
     private Button _returnButton;
 
+
     // Dialogue Variables
     private readonly string[] _mainCharacterLines = { "Hey new kid! Wanna join us playing football? We need one more player." };
     private readonly string[] _cmtCharacterLines = { "Hey there, thanks. I would love to play with you, but I cannot play football." };
 
     private readonly string[] _questionChoices1 = {
-            "Why? Is there something wrong?",
-            "Why not? You don't look sick or anything."
-        };
+        "Why? Is there something wrong?",
+        "Why not? You don't look sick or anything."
+    };
 
     private readonly string[] _answers1 = {
-            "Yes, I have a disease called Charcot-Marie-Tooth. It makes it really hard for me to maintain balance and control my body like you.",
-            "You shouldn't assume things just by looking at people. I'm not sick, but I actually have this disease called Charcot-Marie-Tooth. It makes it really hard for me to maintain balance and control my body like you."
-        };
+        "Yes, I have a disease called Charcot-Marie-Tooth. It makes it really hard for me to maintain balance and control my body like you.",
+        "You shouldn't assume things just by looking at people. I'm not sick, but I actually have this disease called Charcot-Marie-Tooth. It makes it really hard for me to maintain balance and control my body like you."
+    };
 
     private readonly string[] _questionChoices2 = {
-            "Oh, I'm sorry to hear that. If you want, I can ask the guys to play something other than football so you can join us." ,
-            "Oh, I'm sorry to hear that. I guess we'll have to play with an odd number of players, then. See you later!",
-            "You can be the goalkeeper, then. You won't have to move too much and we get to play with an even number of players.",
-            "I guess no one will want to play with you then. I'll try to find someone else."
-        };
+        "Oh, I'm sorry to hear that. If you want, I can ask the guys to play something other than football so you can join us." ,
+        "Oh, I'm sorry to hear that. I guess we'll have to play with an odd number of players, then. See you later!",
+        "You can be the goalkeeper, then. You won't have to move too much and we get to play with an even number of players.",
+        "I guess no one will want to play with you then. I'll try to find someone else."
+    };
 
     private readonly string[] _answers2 = {
-            "Thanks. I really appreciate it.",
-            "Oh, ok ... See you later then.",
-            "I think I'll pass.",
-            "That was not very nice from you. You seemed like a respectful guy at first."
-        };
+        "Thanks. I really appreciate it.",
+        "Oh, ok ... See you later then.",
+        "I think I'll pass.",
+        "That was not very nice from you. You seemed like a respectful guy at first."
+    };
 
     private readonly string[] _questionChoices3 = {
-            "I'm sorry I said that. That was rude. If you want, I can ask the guys to play something other than football so you can join us.",
-            "I'm sorry I said that. That was rude. I guess we'll have to play with an odd number of players, then. See you later!",
-            "You can be the goalkeeper, then. You won't have to move too much and we get to play with an even number of players.",
-            "Who cares? No one will want to play with you, then. I'll try to find someone else."
-        };
+        "I'm sorry I said that. That was rude. If you want, I can ask the guys to play something other than football so you can join us.",
+        "I'm sorry I said that. That was rude. I guess we'll have to play with an odd number of players, then. See you later!",
+        "You can be the goalkeeper, then. You won't have to move too much and we get to play with an even number of players.",
+        "Who cares? No one will want to play with you, then. I'll try to find someone else."
+    };
 
     private readonly string[] _answers3 = {
-            "No problem, I don't think you meant to be rude. I'd really appreciate it if you guys played something else just so I can play too.",
-            "Sure, no problem. See you later, then.",
-            "No thanks. I'd rather do something else.",
-            "You are really rude."
-        };
+        "No problem, I don't think you meant to be rude. I'd really appreciate it if you guys played something else just so I can play too.",
+        "Sure, no problem. See you later, then.",
+        "No thanks. I'd rather do something else.",
+        "You are really rude."
+    };
 
     // 1 -> End of Interaction
     private List<int[]> _answerController;
@@ -78,15 +86,15 @@ public class CMTInteractionScript : MonoBehaviour {
 
 
     // Player scores work as follows
-    // +10 for the best action
-    //  +5 for the second best reaction
-    //   0 for a wrong action
+    // +10 for excellent action
+    //  +5 for goot action
+    //   0 for bad action
     //  -5 for an awfull action
     private List<int[]> _playerScore;
     private int _playerLevelScore;
-    private readonly int[] _q1Scores={10, 0};
-    private readonly int[] _q2Scores={10, 5, 0, -5};
-    private readonly int[] _q3Scores={10, 5, 0, -5};
+    private readonly int[] _q1Scores = { 10, 0 };
+    private readonly int[] _q2Scores = { 10, 5, 0, -5 };
+    private readonly int[] _q3Scores = { 10, 5, 0, -5 };
 
     private List<string[]> _questionsList;
     private List<string[]> _cmtCharacterSpeechList;
@@ -117,6 +125,7 @@ public class CMTInteractionScript : MonoBehaviour {
         _displayNextButton = false;
         _questionsIterator = 0;
 
+
         // Get Character's Lines
         //  XMLParser("level1, mainCharacterLines ,cmtCharacterLines");
 
@@ -141,6 +150,22 @@ public class CMTInteractionScript : MonoBehaviour {
         // Hide Speech balloons
         _mainCharacterSpeechBalloon.enabled = false;
         cmtCharacterSpeechBalloon.enabled = false;
+
+        // Init Reactions & hide everything
+        _excellent = GameObject.Find("excellent").GetComponent<Image>();
+        _excellent.enabled = false;
+        _good = GameObject.Find("good").GetComponent<Image>();
+        _good.enabled = false;
+        _bad = GameObject.Find("bad").GetComponent<Image>();
+        _bad.enabled = false;
+        _awful = GameObject.Find("awful").GetComponent<Image>();
+        _awful.enabled = false;
+
+
+
+
+
+
 
         // initialize questions and answers
         // TODO: Should be done with the xmlParser
@@ -255,22 +280,45 @@ public class CMTInteractionScript : MonoBehaviour {
     // Clear Speech Balloon
     void ClearText(Text textObject)
     {
-      if(_writing)
-      {
-        return;
-      }
+        if (_writing)
+        {
+            return;
+        }
         textObject.text = "";
     }
+
+    void GetReaction(int PlayerChoice)
+    {
+        Image reaction = null;
+        switch(PlayerChoice)
+        {
+            case 10:
+                reaction = _excellent;
+                break;
+            case 5:
+                reaction = _good;
+                break;
+            case 0:
+                reaction = _bad;
+                break;
+            case -5:
+                reaction = _awful;
+                break;
+        }
+        reaction.enabled = true;
+        reaction.CrossFadeAlpha(0, 1.5f, false);
+    }
+
 
 
     void ButtonClicked(int buttonNumber)
     {
         if (_questionsIterator == _cmtCharacterSpeechList.Count - 1)
         {
-          
+
         }
         HideButtons();
-        
+        GetReaction(_playerScore[_questionsIterator][buttonNumber]);
         GetCmTresponse(buttonNumber);
     }
 
@@ -341,9 +389,7 @@ public class CMTInteractionScript : MonoBehaviour {
                     yield return new WaitForSeconds(LetterPause);
                 }
                 _writing = false;
-                Debug.Log("questionsIterator" + _questionsIterator);
                 _playerLevelScore += _playerScore[_questionsIterator][number];
-                Debug.Log("player score: " + _playerLevelScore);
                 if (_questionsIterator == _cmtCharacterSpeechList.Count - 1 || _answerController[_questionsIterator][number] == 1)
                 {
                     HideButtons();
