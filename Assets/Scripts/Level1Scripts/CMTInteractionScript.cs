@@ -306,7 +306,9 @@ public class CMTInteractionScript : MonoBehaviour
                 break;
         }
         reaction.enabled = true;
+        reaction.canvasRenderer.SetAlpha(1.0f);
         reaction.CrossFadeAlpha(0, 1.5f, false);
+        
     }
 
 
