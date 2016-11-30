@@ -76,13 +76,16 @@
     <Compile Include="Assets\Scripts\InteractionNotificationScript.cs" />
     <Compile Include="Assets\Scripts\Level1Scripts\CMTInteractionScript.cs" />
     <Compile Include="Assets\Scripts\Level1Scripts\Level1Manager.cs" />
-    <Compile Include="Assets\Scripts\Level1Scripts\Level1bManager.cs" />
+    <Compile Include="Assets\Scripts\Level2Scripts\GoingToClass.cs" />
+    <Compile Include="Assets\Scripts\Level2Scripts\MarthaInteractionScript.cs" />
+    <Compile Include="Assets\Scripts\Level2Scripts\ScottInteractionScript.cs" />
     <Compile Include="Assets\Scripts\ParserXML\Dialogue.cs" />
     <Compile Include="Assets\Scripts\ParserXML\NPC.cs" />
     <Compile Include="Assets\Scripts\ParserXML\Parser.cs" />
     <Compile Include="Assets\Scripts\RandomFact.cs" />
     <Compile Include="Assets\Scripts\SwapCharacterSprite.cs" />
     <Compile Include="Assets\Scripts\TouchControls.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\ParserXML\XML.xml" />

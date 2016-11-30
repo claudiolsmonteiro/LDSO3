@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Level1/Level1a-footballInteraction.unity
+- path: Assets/Scenes/3 Class/Level3a.unity
   isLoaded: 1
   isActive: 1
