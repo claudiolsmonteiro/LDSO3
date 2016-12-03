@@ -10,6 +10,7 @@ namespace Assets.Scripts.Level1Scripts
 
         // TextTyper variables
         public float LetterPause = 0.05f;
+        public GameObject Button;
         string _message;
         Text _textComp;
   
@@ -99,15 +100,26 @@ namespace Assets.Scripts.Level1Scripts
         }
 
         public void OnGUI() {
-            if (_displayReturn) {
-                if (GUI.Button(new Rect(375, 225, 268, 25), "Return")) {
+            if (_displayReturn && !Button.activeSelf)
+            {
+                Button.SetActive(true);
+                Button returnButton = Button.GetComponent<Button>();
+                returnButton.onClick.RemoveAllListeners();
+                returnButton.onClick.AddListener(() =>
+                {
                     SceneManager.LoadScene("SchoolOutdoors");
-                }
+                });
             }
-            if (DisplayContinue) {
-                if (GUI.Button(new Rect(375, 225, 268, 25), "Continue")) {
+            if (DisplayContinue && !Button.activeSelf) {
+                Button.SetActive(true);
+                Button returnButton = Button.GetComponent<Button>();
+                Text returnButtonText = Button.GetComponentInChildren<Text>();
+                returnButtonText.text = "Continue";
+                returnButton.onClick.RemoveAllListeners();
+                returnButton.onClick.AddListener(() =>
+                {
                     SceneManager.LoadScene("Level1a-LookingForAPlayer");
-                }
+                });
             }
 
         }

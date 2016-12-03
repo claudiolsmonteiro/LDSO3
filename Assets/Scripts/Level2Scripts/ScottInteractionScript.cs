@@ -9,6 +9,7 @@ public class ScottInteractionScript : MonoBehaviour
 
     // TextTyper variables
     public float LetterPause = 0.05f;
+    public GameObject Button;
     string _message;
 
     //Character's GameObjects
@@ -31,9 +32,6 @@ public class ScottInteractionScript : MonoBehaviour
     private Button _answerB;
     private Button _answerC;
     private Button _answerD;
-
-    private Button _continueButton;
-    private Button _returnButton;
 
 
     // Dialogue Variables
@@ -168,8 +166,6 @@ public class ScottInteractionScript : MonoBehaviour
         _answerB = GameObject.Find("answerB").GetComponent<Button>();
         _answerC = GameObject.Find("answerC").GetComponent<Button>();
         _answerD = GameObject.Find("answerD").GetComponent<Button>();
-        _continueButton = GameObject.Find("continue").GetComponent<Button>();
-        _returnButton = GameObject.Find("return").GetComponent<Button>();
 
         // Hide Speech balloons
         _mainCharacterSpeechBalloon.enabled = false;
@@ -305,8 +301,6 @@ public class ScottInteractionScript : MonoBehaviour
         _answerB.gameObject.SetActive(false);
         _answerC.gameObject.SetActive(false);
         _answerD.gameObject.SetActive(false);
-        _continueButton.gameObject.SetActive(false);
-        _returnButton.gameObject.SetActive(false);
     }
 
     // Clear Speech Balloon
@@ -389,13 +383,17 @@ public class ScottInteractionScript : MonoBehaviour
 
     public void OnGUI()
     {
-        if (_interactionOver)
+        if (_interactionOver && !Button.activeSelf)
         {
-            if (GUI.Button(new Rect(375, 225, 268, 25), "Return"))
+            Button.SetActive(true);
+            Button returnButton = Button.GetComponent<Button>();
+            Text returnButtonText = Button.GetComponentInChildren<Text>();
+            returnButtonText.text = "Return";
+            returnButton.onClick.RemoveAllListeners();
+            returnButton.onClick.AddListener(() =>
             {
                 SceneManager.LoadScene("CMTandMobility");
-            }
-
+            });
         }
     }
 

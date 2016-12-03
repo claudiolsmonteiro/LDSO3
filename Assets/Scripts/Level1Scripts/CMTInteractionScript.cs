@@ -9,16 +9,15 @@ public class CMTInteractionScript : MonoBehaviour
 
     // TextTyper variables
     public float LetterPause = 0.05f;
-    string _message;
+    public GameObject Button;
+    private string _message;
 
     //Character's GameObjects
     private Image _mainCharacterSpeechBalloon;
     private Text _mainCharacterSpeech;
-    private string _mainCharacterSpeechText;
 
-    private Image cmtCharacterSpeechBalloon;
-    private Text cmtCharacterSpeech;
-    private string _cmtCharacterSpeechText;
+    private Image _cmtCharacterSpeechBalloon;
+    private Text _cmtCharacterSpeech;
 
     // Reactions
     private Image _excellent;
@@ -31,10 +30,6 @@ public class CMTInteractionScript : MonoBehaviour
     private Button _answerB;
     private Button _answerC;
     private Button _answerD;
-
-    private Button _continueButton;
-    private Button _returnButton;
-
 
     // Dialogue Variables
     private readonly string[] _mainCharacterLines = { "Hey new kid! Wanna join us playing football? We need one more player." };
@@ -132,24 +127,20 @@ public class CMTInteractionScript : MonoBehaviour
         // Get main character's speech objects
         _mainCharacterSpeechBalloon = GameObject.Find("mainCharacterSpeech").GetComponent<Image>();
         _mainCharacterSpeech = GameObject.Find("mainCharacterSpeechText").GetComponent<Text>();
-        _mainCharacterSpeechText = _mainCharacterSpeech.text;
 
         // Get cmt character's speech objects
-        cmtCharacterSpeechBalloon = GameObject.Find("CMTcharacterSpeech").GetComponent<Image>();
-        cmtCharacterSpeech = GameObject.Find("CMTcharacterSpeechText").GetComponent<Text>();
-        _cmtCharacterSpeechText = _mainCharacterSpeech.text;
+        _cmtCharacterSpeechBalloon = GameObject.Find("CMTcharacterSpeech").GetComponent<Image>();
+        _cmtCharacterSpeech = GameObject.Find("CMTcharacterSpeechText").GetComponent<Text>();
 
         // Get buttons
         _answerA = GameObject.Find("answerA").GetComponent<Button>();
         _answerB = GameObject.Find("answerB").GetComponent<Button>();
         _answerC = GameObject.Find("answerC").GetComponent<Button>();
         _answerD = GameObject.Find("answerD").GetComponent<Button>();
-        _continueButton = GameObject.Find("continue").GetComponent<Button>();
-        _returnButton = GameObject.Find("return").GetComponent<Button>();
 
         // Hide Speech balloons
         _mainCharacterSpeechBalloon.enabled = false;
-        cmtCharacterSpeechBalloon.enabled = false;
+        _cmtCharacterSpeechBalloon.enabled = false;
 
         // Init Reactions & hide everything
         _excellent = GameObject.Find("excellent").GetComponent<Image>();
@@ -160,10 +151,6 @@ public class CMTInteractionScript : MonoBehaviour
         _bad.enabled = false;
         _awful = GameObject.Find("awful").GetComponent<Image>();
         _awful.enabled = false;
-
-
-
-
 
 
 
@@ -201,8 +188,8 @@ public class CMTInteractionScript : MonoBehaviour
         if (_mainCharacterTurn)
         {
             // clear everything
-            cmtCharacterSpeechBalloon.enabled = false;
-            ClearText(cmtCharacterSpeech);
+            _cmtCharacterSpeechBalloon.enabled = false;
+            ClearText(_cmtCharacterSpeech);
             ClearText(_mainCharacterSpeech);
             // Write Text
             _message = _mainCharacterLines[_mainCharacterDialogueCounter];
@@ -213,7 +200,7 @@ public class CMTInteractionScript : MonoBehaviour
         {
             // Clean Everything
             _mainCharacterSpeechBalloon.enabled = false;
-            ClearText(cmtCharacterSpeech);
+            ClearText(_cmtCharacterSpeech);
             ClearText(_mainCharacterSpeech);
             // Write Text
             _message = _cmtCharacterLines[_cmtCharacterDialogueCounter];
@@ -233,7 +220,7 @@ public class CMTInteractionScript : MonoBehaviour
     void GetCmTresponse(int number)
     {
         // Clean Everything
-        ClearText(cmtCharacterSpeech);
+        ClearText(_cmtCharacterSpeech);
         // Write Text
         _message = _cmtCharacterSpeechList[_questionsIterator][number];
         StartCoroutine(WriteCmTspeech(_message, number));
@@ -273,8 +260,6 @@ public class CMTInteractionScript : MonoBehaviour
         _answerB.gameObject.SetActive(false);
         _answerC.gameObject.SetActive(false);
         _answerD.gameObject.SetActive(false);
-        _continueButton.gameObject.SetActive(false);
-        _returnButton.gameObject.SetActive(false);
     }
 
     // Clear Speech Balloon
@@ -287,10 +272,10 @@ public class CMTInteractionScript : MonoBehaviour
         textObject.text = "";
     }
 
-    void GetReaction(int PlayerChoice)
+    void GetReaction(int playerChoice)
     {
         Image reaction = null;
-        switch(PlayerChoice)
+        switch(playerChoice)
         {
             case 10:
                 reaction = _excellent;
@@ -305,10 +290,12 @@ public class CMTInteractionScript : MonoBehaviour
                 reaction = _awful;
                 break;
         }
-        reaction.enabled = true;
-        reaction.canvasRenderer.SetAlpha(1.0f);
-        reaction.CrossFadeAlpha(0, 1.5f, false);
-        
+        if (reaction != null)
+        {
+            reaction.enabled = true;
+            reaction.canvasRenderer.SetAlpha(1.0f);
+            reaction.CrossFadeAlpha(0, 1.5f, false);
+        }
     }
 
 
@@ -327,21 +314,31 @@ public class CMTInteractionScript : MonoBehaviour
 
     public void OnGUI()
     {
-        if (_displayNextButton)
+        if (_displayNextButton && !Button.activeSelf)
         {
-            if (GUI.Button(new Rect(375, 225, 268, 25), "Continue"))
+            Button.SetActive(true);
+            Button returnButton = Button.GetComponent<Button>();
+            Text returnButtonText = Button.GetComponentInChildren<Text>();
+            returnButtonText.text = "Continue";
+            returnButton.onClick.RemoveAllListeners();
+            returnButton.onClick.AddListener(() =>
             {
-                ContinueDialogue();
                 _displayNextButton = false;
-            }
+                Button.SetActive(false);
+                ContinueDialogue();
+            });
         }
-        if (_interactionOver)
+        if (_interactionOver && !Button.activeSelf)
         {
-            if (GUI.Button(new Rect(375, 225, 268, 25), "Return"))
+            Button.SetActive(true);
+            Button returnButton = Button.GetComponent<Button>();
+            Text returnButtonText = Button.GetComponentInChildren<Text>();
+            returnButtonText.text = "Return";
+            returnButton.onClick.RemoveAllListeners();
+            returnButton.onClick.AddListener(() =>
             {
                 SceneManager.LoadScene("CMTandExercise");
-            }
-
+            });
         }
     }
 
@@ -360,10 +357,10 @@ public class CMTInteractionScript : MonoBehaviour
         }
         else if (!_interactionOver)
         {
-            cmtCharacterSpeechBalloon.enabled = true;
+            _cmtCharacterSpeechBalloon.enabled = true;
             for (int i = 0; i < message.Length; i++)
             {
-                cmtCharacterSpeech.text += message[i];
+                _cmtCharacterSpeech.text += message[i];
                 yield return new WaitForSeconds(LetterPause);
             }
         }
@@ -383,11 +380,11 @@ public class CMTInteractionScript : MonoBehaviour
             _writing = true;
             if (!_interactionOver)
             {
-                cmtCharacterSpeechBalloon.enabled = true;
-                ClearText(cmtCharacterSpeech);
+                _cmtCharacterSpeechBalloon.enabled = true;
+                ClearText(_cmtCharacterSpeech);
                 for (int i = 0; i < message.Length; i++)
                 {
-                    cmtCharacterSpeech.text += message[i];
+                    _cmtCharacterSpeech.text += message[i];
                     yield return new WaitForSeconds(LetterPause);
                 }
                 _writing = false;

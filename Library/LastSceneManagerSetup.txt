@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/2 Going to class/4-LookingForScottPart2.unity
+- path: Assets/Scenes/2 Going to class/5-ScottInteraction.unity
   isLoaded: 1
   isActive: 1
