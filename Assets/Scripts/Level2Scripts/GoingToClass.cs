@@ -13,7 +13,7 @@ public class GoingToClass : MonoBehaviour
     void Start()
     {
         _directions =  "It's almost time for your first class of the day. You should go to your classroom";
-        _textObject = GameObject.Find("DirectionsText").GetComponent<Text>();
+    //    _textObject = GameObject.Find("DirectionsText").GetComponent<Text>();
         StartCoroutine(TypeDirections(_directions, _textObject));
     }
 

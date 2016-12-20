@@ -43,11 +43,12 @@ public class ScottInteractionScript : MonoBehaviour
         "Martha told me you were having trouble climbing those stairs. I just came to watch you struggle."
     };
     private readonly int[] _PlayerLines1Scores = { 10, 5, 0, -5 };
-    private readonly int[] _PlayerLines2AScores = { 10, -5 };
-    private readonly int[] _PlayerLines2BScores = { 10, -5 };
-    private readonly int[] _PlayerLines2CScores = { 10, -5 };
-    private readonly int[] _PlayerLines2DScores = { 10, -5 };
+    private readonly int[] _PlayerLines2AScores = { 10, -6 };
+    private readonly int[] _PlayerLines2BScores = { 10, -6 };
+    private readonly int[] _PlayerLines2CScores = { 10, -6 };
+    private readonly int[] _PlayerLines2DScores = { 10, -6 };
 
+    private bool _didntHelp = false;
 
     private readonly string[] _PlayerLines2A = {
         "Sure, you can grab onto me. Let's go to class together!",
@@ -209,7 +210,7 @@ public class ScottInteractionScript : MonoBehaviour
         StartCoroutine(Wait2Seconds());
         // start actions
 
-        
+
     }
 
     IEnumerator Wait2Seconds()
@@ -331,6 +332,10 @@ public class ScottInteractionScript : MonoBehaviour
             case -5:
                 reaction = _awful;
                 break;
+            case -6:
+                reaction = _awful;
+                _didntHelp = true;
+                break;
         }
         reaction.enabled = true;
         reaction.canvasRenderer.SetAlpha(1.0f);
@@ -346,7 +351,7 @@ public class ScottInteractionScript : MonoBehaviour
         {
 
         }
-       
+
         HideButtons();
         int tempScore = 0;
         if (_interactionIterator == 0)
@@ -388,12 +393,23 @@ public class ScottInteractionScript : MonoBehaviour
             Button.SetActive(true);
             Button returnButton = Button.GetComponent<Button>();
             Text returnButtonText = Button.GetComponentInChildren<Text>();
+            Debug.Log("didnt help: " + _didntHelp);
             returnButtonText.text = "Return";
             returnButton.onClick.RemoveAllListeners();
-            returnButton.onClick.AddListener(() =>
+            if (_didntHelp)
             {
-                SceneManager.LoadScene("CMTandMobility");
-            });
+                returnButton.onClick.AddListener(() =>
+                {
+                    SceneManager.LoadScene("1-Corridor");
+                });
+            }
+            else
+            {
+                returnButton.onClick.AddListener(() =>
+                {
+                    SceneManager.LoadScene("0-intro");
+                });
+            }
         }
     }
 

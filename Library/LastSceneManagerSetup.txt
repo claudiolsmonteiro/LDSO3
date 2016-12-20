@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/1 Football/Level1b-CMTcharacterInteraction.unity
+- path: Assets/Scenes/2b Going to class alone/3-ProfessorInteraction.unity
   isLoaded: 1
   isActive: 1

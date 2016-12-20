@@ -64,12 +64,6 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
@@ -85,6 +79,10 @@
     <Compile Include="Assets\Scripts\Level2Scripts\GoingToClass.cs" />
     <Compile Include="Assets\Scripts\Level2Scripts\MarthaInteractionScript.cs" />
     <Compile Include="Assets\Scripts\Level2Scripts\ScottInteractionScript.cs" />
+    <Compile Include="Assets\Scripts\Level3Scripts\Accelerometer.cs" />
+    <Compile Include="Assets\Scripts\Level3Scripts\HelpingScottScript.cs" />
+    <Compile Include="Assets\Scripts\Level3Scripts\Level3CollisionScript.cs" />
+    <Compile Include="Assets\Scripts\Level3Scripts\ProfessorInteractionScript.cs" />
     <Compile Include="Assets\Scripts\ParserXML\Dialogue.cs" />
     <Compile Include="Assets\Scripts\ParserXML\NPC.cs" />
     <Compile Include="Assets\Scripts\ParserXML\Parser.cs" />
