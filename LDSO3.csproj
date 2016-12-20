@@ -85,6 +85,10 @@
     <Compile Include="Assets\Scripts\Level2Scripts\GoingToClass.cs" />
     <Compile Include="Assets\Scripts\Level2Scripts\MarthaInteractionScript.cs" />
     <Compile Include="Assets\Scripts\Level2Scripts\ScottInteractionScript.cs" />
+    <Compile Include="Assets\Scripts\Level3Scripts\Accelerometer.cs" />
+    <Compile Include="Assets\Scripts\Level3Scripts\HelpingScottScript.cs" />
+    <Compile Include="Assets\Scripts\Level3Scripts\Level3CollisionScript.cs" />
+    <Compile Include="Assets\Scripts\Level3Scripts\ProfessorInteractionScript.cs" />
     <Compile Include="Assets\Scripts\ParserXML\Dialogue.cs" />
     <Compile Include="Assets\Scripts\ParserXML\NPC.cs" />
     <Compile Include="Assets\Scripts\ParserXML\Parser.cs" />
