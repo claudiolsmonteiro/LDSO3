@@ -1,22 +1,23 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Utilities : MonoBehaviour
+namespace Assets.Scripts.Utilities
 {
-
-    // Write text to screen
-    private float _letterPause = 0.05f;
-    // private bool _writing;
-    public IEnumerator TypeText(string message, Text TextComp)
+    public class Utilities : MonoBehaviour
     {
-        for (int i = 0; i < message.Length; i++)
-        {
-            TextComp.text += message[i];
-            yield return new WaitForSeconds(_letterPause);
-        }
-    }
 
+        // Write text to screen
+        private float _letterPause = 0.05f;
+        // private bool _writing;
+        public IEnumerator TypeText(string message, Text TextComp)
+        {
+            for (int i = 0; i < message.Length; i++)
+            {
+                TextComp.text += message[i];
+                yield return new WaitForSeconds(_letterPause);
+            }
+        }
+
+    }
 }
