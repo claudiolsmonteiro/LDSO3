@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2015
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LDSO3", "LDSO3.csproj", "{3E870578-D6CC-65D5-1F2A-BD432A2D5463}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LDSO3.CSharp", "LDSO3.CSharp.csproj", "{EA7EAB0E-8F2F-4E31-621A-6D70EBFB8AD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3E870578-D6CC-65D5-1F2A-BD432A2D5463}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3E870578-D6CC-65D5-1F2A-BD432A2D5463}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3E870578-D6CC-65D5-1F2A-BD432A2D5463}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3E870578-D6CC-65D5-1F2A-BD432A2D5463}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA7EAB0E-8F2F-4E31-621A-6D70EBFB8AD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA7EAB0E-8F2F-4E31-621A-6D70EBFB8AD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA7EAB0E-8F2F-4E31-621A-6D70EBFB8AD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA7EAB0E-8F2F-4E31-621A-6D70EBFB8AD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
