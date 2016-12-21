@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class Level3CollisionScript : MonoBehaviour
+public class Level3Ending : MonoBehaviour
 {
     public void OnTriggerEnter2D()
     {
