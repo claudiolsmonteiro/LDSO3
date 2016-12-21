@@ -104,7 +104,7 @@ namespace Assets.Scripts.Level2Scripts
                 Button returnButton = Button.GetComponent<Button>();
                 returnButton.onClick.AddListener(() =>
                 {
-                    SceneManager.LoadScene("1-GoingToClass");
+                    SceneManager.LoadScene("3-LookingForScottB");
                 });
             }
             if (DisplayContinue) {
