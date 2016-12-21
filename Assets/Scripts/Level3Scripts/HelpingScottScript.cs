@@ -1,66 +1,62 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class HelpingScottScript : MonoBehaviour
+namespace Assets.Scripts.Level3Scripts
 {
-
-    //Character's GameObjects
-    private Image _mainCharacterSpeechBalloon;
-    private Text _mainCharacterSpeech;
-    private string _mainCharacterSpeechText;
-    public float LetterPause = 0.05f;
-    private bool _interactionOver;
-
-    private Image cmtCharacterSpeechBalloon;
-    private Text scottSpeech;
-    private string _cmtCharacterSpeechText;
-
-    private string[] _scottLines = { "Hey, Scott. \n Sorry I didn't help you before",
-                                    "Do you want some help?" };
-
-    private string[] _jimmyLines = { "Oh, hey Jimmy. No problem, but you should be more careful with what you say",
-                                     "Sure, if you don't mind"};
-
-
-    private int _jimmyCounter;
-    private int _professorCounter;
-    private bool _mainCharacterTurn;
-    private bool displayButton;
-
-    // Use this for initialization
-    void Start()
+    public class HelpingScottScript : MonoBehaviour
     {
 
-        // Get main character's speech objects
-        _mainCharacterSpeechBalloon = GameObject.Find("mainCharacterSpeech").GetComponent<Image>();
-        _mainCharacterSpeech = GameObject.Find("mainCharacterSpeechText").GetComponent<Text>();
-        _mainCharacterSpeechText = _mainCharacterSpeech.text;
+        //Character's GameObjects
+        private Image _mainCharacterSpeechBalloon;
+        private Text _mainCharacterSpeech;
+        private string _mainCharacterSpeechText;
+        public float LetterPause = 0.05f;
+        public GameObject Button;
+        private bool _interactionOver;
 
-        // Get cmt character's speech objects
-        cmtCharacterSpeechBalloon = GameObject.Find("CMTcharacterSpeech").GetComponent<Image>();
-        scottSpeech = GameObject.Find("CMTcharacterSpeechText").GetComponent<Text>();
-        _cmtCharacterSpeechText = _mainCharacterSpeech.text;
-        _mainCharacterTurn = true;
-        _interactionOver = false;
-        displayButton = false;
-        _professorCounter = _jimmyCounter = 0;
-        interaction();
-    }
+        private Image _cmtCharacterSpeechBalloon;
+        private Text _scottSpeech;
+        private string _cmtCharacterSpeechText;
 
-    public void interaction()
-    {
-        string line;
-        if (_professorCounter == _scottLines.Length && _jimmyCounter == _jimmyLines.Length)
+        private readonly string[] _scottLines = { "Hey, Scott. \n Sorry I didn't help you before",
+            "Do you want some help?" };
+
+        private readonly string[] _jimmyLines = { "Oh, hey Jimmy. No problem, but you should be more careful with what you say",
+            "Sure, if you don't mind"};
+
+
+        private int _jimmyCounter;
+        private int _professorCounter;
+        private bool _mainCharacterTurn;
+        private bool _displayButton;
+
+        // Use this for initialization
+        void Start()
         {
-            _interactionOver = true;
-            return;
+
+            // Get main character's speech objects
+            _mainCharacterSpeechBalloon = GameObject.Find("mainCharacterSpeech").GetComponent<Image>();
+            _mainCharacterSpeech = GameObject.Find("mainCharacterSpeechText").GetComponent<Text>();
+            _mainCharacterSpeechText = _mainCharacterSpeech.text;
+
+            // Get cmt character's speech objects
+            _cmtCharacterSpeechBalloon = GameObject.Find("CMTcharacterSpeech").GetComponent<Image>();
+            _scottSpeech = GameObject.Find("CMTcharacterSpeechText").GetComponent<Text>();
+            _cmtCharacterSpeechText = _mainCharacterSpeech.text;
+            _mainCharacterTurn = true;
+            _interactionOver = false;
+            _displayButton = false;
+            _professorCounter = _jimmyCounter = 0;
+            Interaction();
         }
-        else
+
+        public void Interaction()
         {
-            clearText();
+            string line;
+            ClearText();
             if (_mainCharacterTurn)
             {
                 line = _scottLines[_professorCounter];
@@ -70,67 +66,84 @@ public class HelpingScottScript : MonoBehaviour
                 line = _jimmyLines[_jimmyCounter];
 
             }
+            StartCoroutine(TypeText(line));
         }
-        StartCoroutine(TypeText(line));
 
-    }
-
-    public void clearText()
-    {
-        scottSpeech.text = "";
-        _mainCharacterSpeech.text = "";
-
-        cmtCharacterSpeechBalloon.enabled = false;
-        _mainCharacterSpeechBalloon.enabled = false;
-
-
-    }
-
-    void OnGUI()
-    {
-        if (_interactionOver)
+        public void ClearText()
         {
-            if (GUI.Button(new Rect(300, 300, 100, 50), "Return"))
+            _scottSpeech.text = "";
+            _mainCharacterSpeech.text = "";
+
+            _cmtCharacterSpeechBalloon.enabled = false;
+            _mainCharacterSpeechBalloon.enabled = false;
+
+
+        }
+
+        [UsedImplicitly]
+        void OnGUI()
+        {
+            if (_interactionOver && !Button.activeSelf)
             {
-                SceneManager.LoadScene("0-intro");
+                Button.SetActive(true);
+                Button returnButton = Button.GetComponent<Button>();
+                Text returnButtonText = Button.GetComponentInChildren<Text>();
+                returnButtonText.text = "Return";
+                returnButton.onClick.RemoveAllListeners();
+                returnButton.onClick.AddListener(() =>
+                {
+                    SceneManager.LoadScene("0-intro");
+                });
+            }
+            if (_displayButton && !_interactionOver)
+            {
+                Button.SetActive(true);
+                Button returnButton = Button.GetComponent<Button>();
+                Text returnButtonText = Button.GetComponentInChildren<Text>();
+                returnButtonText.text = "Continue";
+                returnButton.onClick.RemoveAllListeners();
+                returnButton.onClick.AddListener(() =>
+                {
+                    _mainCharacterTurn = !_mainCharacterTurn;
+                    _displayButton = false;
+                    Button.SetActive(false);
+                    Interaction();
+                });
             }
         }
-        if (displayButton && !_interactionOver)
+
+
+        IEnumerator TypeText(string message)
         {
-            if (GUI.Button(new Rect(600, 250, 100, 50), "Continue"))
+            if (_mainCharacterTurn)
             {
-                _mainCharacterTurn = !_mainCharacterTurn;
-                displayButton = false;
-                interaction();
+                _mainCharacterSpeechBalloon.enabled = true;
+                for (int i = 0; i < message.Length; i++)
+                {
+                    _mainCharacterSpeech.text += message[i];
+                    yield return new WaitForSeconds(LetterPause);
+                }
+                _professorCounter++;
+
             }
+            else if (!_interactionOver)
+            {
+                _cmtCharacterSpeechBalloon.enabled = true;
+                for (int i = 0; i < message.Length; i++)
+                {
+                    _scottSpeech.text += message[i];
+                    yield return new WaitForSeconds(LetterPause);
+                }
+                _jimmyCounter++;
+            }
+
+            if (_professorCounter == _scottLines.Length && _jimmyCounter == _jimmyLines.Length)
+            {
+                _interactionOver = true;
+            }
+
+            _displayButton = true;
         }
+
     }
-
-
-    IEnumerator TypeText(string message)
-    {
-        if (_mainCharacterTurn)
-        {
-            _mainCharacterSpeechBalloon.enabled = true;
-            for (int i = 0; i < message.Length; i++)
-            {
-                _mainCharacterSpeech.text += message[i];
-                yield return new WaitForSeconds(LetterPause);
-            }
-            _professorCounter++;
-
-        }
-        else if (!_interactionOver)
-        {
-            cmtCharacterSpeechBalloon.enabled = true;
-            for (int i = 0; i < message.Length; i++)
-            {
-                scottSpeech.text += message[i];
-                yield return new WaitForSeconds(LetterPause);
-            }
-            _jimmyCounter++;
-        }
-        displayButton = true;
-    }
-
 }

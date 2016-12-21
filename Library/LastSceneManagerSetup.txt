@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/2 Going to class/1-GoingToClass.unity
+- path: Assets/Scenes/2b Going to class alone/5-HelpingScott.unity
   isLoaded: 1
   isActive: 1
