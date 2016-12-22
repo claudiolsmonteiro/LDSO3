@@ -1,9 +1,8 @@
-﻿<Properties StartupItem="LDSO3.CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Level1Scripts\Level1bManager.cs">
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MenuScripts\Sound.cs">
     <Files>
-      <File FileName="Assets\Scripts\Dialogue.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Level1Scripts\Level1bManager.cs" Line="109" Column="21" />
+      <File FileName="Assets\Scripts\MenuScripts\Sound.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
