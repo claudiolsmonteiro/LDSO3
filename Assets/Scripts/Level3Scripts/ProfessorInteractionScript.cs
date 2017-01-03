@@ -3,6 +3,8 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Assets.Scripts.ParserXML;
+using System.Collections.Generic;
 
 namespace Assets.Scripts.Level3Scripts
 {
@@ -21,11 +23,9 @@ namespace Assets.Scripts.Level3Scripts
         private Text _scottSpeech;
         private string _cmtCharacterSpeechText;
 
-        private string[] professorLines = { "Good morning, Jimmy! \n Have you seen Scott? \n He's usually not late for classes",
-            "And don't you think you should help him? Go get him right now!" };
+        private string[] professorLines;
 
-        private string[] jimmyLines = { "Good morning, Mr Woods. Yes, he's stuck at the stairs.",
-            "Yes, Mr Woods..."};
+        private string[] jimmyLines;
 
 
         private int _jimmyCounter;
@@ -37,6 +37,18 @@ namespace Assets.Scripts.Level3Scripts
         [UsedImplicitly]
         private void Start()
         {
+
+            Assets.Scripts.ParserXML.Parser parser = new Assets.Scripts.ParserXML.Parser();
+            List<NPC> npcs = parser.npcs;
+
+            professorLines = new string[2];
+            jimmyLines = new string[2];
+
+            professorLines[0] = npcs[4].dialogues[2].Options[0];
+            professorLines[1] = npcs[4].dialogues[2].Options[1];
+
+            jimmyLines[0] = npcs[4].dialogues[3].Options[0];
+            jimmyLines[1] = npcs[4].dialogues[3].Options[1];
 
             // Get main character's speech objects
             _mainCharacterSpeechBalloon = GameObject.Find("mainCharacterSpeech").GetComponent<Image>();

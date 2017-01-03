@@ -1,0 +1,257 @@
+<chapter>
+	<npcs>
+		<npc name="Jimmy">
+      <dialogue id="first">
+        <text>Hi! Do you want to play football with us?</text>
+        <answer></answer>
+        <options>
+          <option action="dialogueA">Hi! Yeah, that sound's great</option>
+          <option action="dialogueB">Hi! Thank you, but no.</option>
+        </options>
+      </dialogue>
+      <dialogue id="second">
+        <text>Great! We're missing a player. Do you want to help us find one?</text>
+        <answer>Cool! See you later!</answer>
+        <options>
+          <option action="dialogueA">Sure, I'll look for somebody</option>
+          <option action="dialogueB">Actually, I think I'll maybe join you later</option>
+        </options>
+      </dialogue>
+			<dialogue id="A">
+				<text>Hey, new kid! Wanna join us playing football? We need one more player.</text>
+				<answer>Hey there, thanks. I would love to play with you, but I cannot play football.</answer>
+				<options>
+					<option action="dialogueA">Why? Is there something wrong?</option>
+					<option action="dialogueB">Why not? You don't look sick or anything.</option>
+				</options>
+			</dialogue>
+			<dialogue id="B">
+				<text></text>
+				<answer>Yes, I have a disease called Charcot-Marie-Tooth. It makes it really hard for me to maintain balance and control my body like you.</answer>
+				<options>
+					<option action="dialogueAA">Oh, I'm sorry to hear that. If you want, I can ask the guys to play something other than football so you can join us.</option>
+					<option action="dialogueAB">Oh, I'm sorry to hear that. I guess we'll have to play with an odd number of players, then. See you later!</option>
+					<option action="dialogueAC">You can be the goalkeeper, then. You won't have to move too much and we get to play with an even number of players</option>
+					<option action="dialogueAD">I guess no one will want to play with you then. I'll try to find someone else.</option>
+				</options>
+			</dialogue>
+			<dialogue id="C">
+				<text></text>
+				<answer>You shouldn't assume things just by looking at people. I'm not sick, but I actually have this disease called Charcot-Marie-Tooth. It makes it really hard for me to maintain balance and control my body like you.</answer>
+				<options>
+					<option action="dialogueBA">I'm sorry I said that. That was rude. If you want, I can ask the guys to play something other than football so you can join us.</option>
+					<option action="dialogueBB">I'm sorry I said that. That was rude. I guess we'll have to play with an odd number of players, then. See you later!</option>
+					<option action="dialogueBC">You can be the goalkeeper, then. You won't have to move too much and we get to play with an even number of players.</option>
+					<option action="dialogueBD">Who cares? No one will want to play with you, then. I'll try to find someone else.</option>
+				</options>
+			</dialogue>
+	      <dialogue id="D">
+	        <text></text>
+	        <answer></answer>
+	        <options>
+	          <option action="dialogueCA">Thanks. I really appreciate it.</option>
+	          <option action="dialogueCB">Oh, ok ... See you later then.</option>
+	          <option action="dialogueCC">I think I'll pass.</option>
+	          <option action="dialogueCD">That was not very nice from you. You seemed like a respectful guy at first.</option>
+	        </options>
+	      </dialogue>
+      <dialogue id="E">
+        <text>Oh, ok. Maybe I'll see you later!</text>
+        <answer></answer>
+        <options>
+          <option action="dialogueEA">No problem, I don't think you meant to be rude. I'd really appreciate it if you guys played something else just so I can play too.</option>
+          <option action="dialogueEB">Sure, no problem. See you later, then.</option>
+          <option action="dialogueEC">No thanks. I'd rather do something else.</option>
+          <option action="dialogueED">You are really rude.</option>
+        </options>
+      </dialogue>
+		</npc>
+
+		<npc name="Footballer">
+			<dialogue id="A">
+	        	<text>Hi! Do you want to play football with us?</text>
+	        	<answer></answer>
+	        	<options>
+	        		<option action="dialogueAA">Hi! Yeah, that sound's great</option>
+	          		<option action="dialogueAB">Hi! Thank you, but no.</option>
+	        	</options>
+	        </dialogue>
+	        <dialogue id="B">
+	        	<text>Great! We're missing a player. Do you want to help us find one?</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueBA">Sure, I'll look for somebody</option>
+	          		<option action="dialogueBB">Actually, I think I'll maybe join you later</option>
+	          	</options>
+	        </dialogue>
+	        <dialogue id="C">
+	        	<text>Great! We're missing a player. Do you want to help us find one?</text>
+	        	<answer></answer>
+	        	<options>
+	          	</options>
+	        </dialogue>
+		</npc>
+
+		<npc name="Martha">
+			<dialogue id="A">
+	        	<text>Hey Jimmy! Can you please help Scott? He's trying to climb the stairs but he can't seem to do it without help.</text>
+	        	<answer></answer>
+	        	<options>
+	        		<option action="dialogueBA">Hi! Sure, I'll help him!</option>
+	          	<option action="dialogueBB">Hi! Sorry, but I don't want to arrive late to my class...</option>
+	        	</options>
+	        </dialogue>
+	        <dialogue id="B">
+	        	<text>Cool, he's right by the school's entrance</text>
+	        	<answer></answer>
+	        	<options>
+	          	</options>
+	        </dialogue>
+	        
+	        <dialogue id="C">
+	        	<text>PlayerLines2A</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueCA">Sure, you can grab onto me. Let's go to class together!</option>
+	          		<option action="dialogueCB">Maybe I was wrong. I don't really want to help you now. I don't want to be late for class.</option>
+	          	</options>
+	        </dialogue>
+		</npc>
+
+    <npc name="Scott">
+      <dialogue id="PlayerLines">
+        <text></text>
+        <answer></answer>
+        <options>
+          <option action="dialogueAA">Hi, Scott! Can I help you?</option>
+          <option action="dialogueAB">Do you need help, Scott? Martha told me you couldn't climb the stairs on your own.</option>
+          <option action="dialogueAC">Hey, Scott. I'm here to help you, but just because Martha told me to. I won't help you anymore.... So stop bugging everyone</option>
+          <option action="dialogueAD">Martha told me you were having trouble climbing those stairs. I just came to watch you struggle.</option>
+        </options>
+      </dialogue>
+	        <dialogue id="A">
+	        	<text>PlayerLines2A</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueAA">Sure, you can grab onto me. Let's go to class together!</option>
+	          		<option action="dialogueAB">Maybe I was wrong. I don't really want to help you now. I don't want to be late for class.</option>
+	          	</options>
+	        </dialogue>
+	        <dialogue id="B">
+	        	<text>PlayerLines2B</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueBA">That's what I came here for, Newkid. Let's go to class together.</option>
+	          		<option action="dialogueBB">I don't think so. I think you can climb the stairs on your own if you make an effort.</option>
+	          	</options>
+	        </dialogue>
+	        <dialogue id="C">
+	        	<text>PlayerLines2C</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueCA">Ok, then. Let's get this over with.</option>
+	          		<option action="dialogueCB">Then start climbing these stairs on your own and don't be so dependent of others.</option>
+	          	</options>
+	        </dialogue>
+	        <dialogue id="D">
+	        	<text>PlayerLines2D</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueDA">Ok, I'll help you but you will owe me one.</option>
+	          		<option action="dialogueDB">No way. Watching you have a hard time is so funny.</option>
+	          	</options>
+	        </dialogue>
+	        <dialogue id="E">
+	        	<text>_ScottLines1</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueEA">Yes, please. I am having a bit of trouble climbing these stairs. Would you mind if I grabbed onto you?</option>
+	          		<option action="dialogueEB">Yes, it's true... Could you please help me?</option>
+	          		<option action="dialogueEC">It's not my intention to bother people... I'm just having a hard time climbing these stairs.</option>
+	          		<option action="dialogueED">That's not cool. I'm really struggling. Please, help me climb these stairs.</option>
+	          	</options>
+	        </dialogue>
+	        <dialogue id="F">
+	        	<text>_ScottLines2A</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueFA">You're really nice. Maybe we could be friends.</option>
+	          		<option action="dialogueFB">I really thought you were going to help me. You seemed nice.</option>
+	          	</options>
+	        </dialogue>
+	        <dialogue id="G">
+	        	<text>_ScottLines2B</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueGA">Sure. You are nice. Can we be friends?</option>
+              <option action="dialogueGB">I would if I could. Forget I asked for your help. You seemed kind of nice.</option>
+	          	</options>
+	        </dialogue>
+	        <dialogue id="H">
+	        	<text>_ScottLines2C</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueHA">I am happy that you're helping me. I hope I'm not bothering you too much.</option>
+	          		<option action="dialogueHB">I would if I could. I thought you were going to help me, but after all, you're not nice.</option>
+	          	</options>
+	        </dialogue>
+	        <dialogue id="I">
+	        	<text>_ScottLines2D</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueDA">I'm glad for your help, but I don't think we should be keeping score on who helps one another.</option>
+	          		<option action="dialogueDB">You are really rude. If you didn't want to help me, you shouldn't have come</option>
+	          	</options>
+	        </dialogue>
+
+		</npc>
+
+		<npc name="´Professor">
+			<dialogue id="A">
+	        	<text>_scottLines</text>
+	        	<answer></answer>
+	        	<options>
+	        		<option action="dialogueAA">Hey, Scott. \n Sorry I didn't help you before</option>
+	          		<option action="dialogueAB">Do you want some help?</option>
+	        	</options>
+	        </dialogue>
+	        <dialogue id="B">
+	        	<text>_jimmyLines</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueBA">Oh, hey Jimmy. No problem, but you should be more careful with what you say</option>
+	          		<option action="dialogueBB">Sure, if you don't mind</option>
+	          	</options>
+	        </dialogue>
+	        <dialogue id="C">
+	        	<text>professorLines</text>
+	        	<answer></answer>
+	        	<options>
+	        		<option action="dialogueCA">Good morning, Jimmy! \n Have you seen Scott? \n He's usually not late for classes</option>
+	          		<option action="dialogueCB">And don't you think you should help him? Go get him right now!</option>
+	          	</options>
+	        </dialogue>
+	        <dialogue id="D">
+	        	<text>jimmyLines</text>
+	        	<answer></answer>
+	        	<options>
+	        		<option action="dialogueDA">Good morning, Mr Woods. Yes, he's stuck at the stairs.</option>
+	          		<option action="dialogueDB">Yes, Mr Woods...</option>
+	          	</options>
+	        </dialogue>
+		</npc>
+    <npc name="CMTFacts">
+      <dialogue id="A">
+        <text>facts</text>
+        <answer></answer>
+        <options>
+          <option action="fact1">CMT is one of the most common inherited neurological disorders</option>
+          <option action="fact2">CMT affects approximately 1 in 2500 people</option>
+          <option action="fact3">CMT is also known as hereditary motor and sensory neuropathy</option>
+          <option action="fact4">An CMT typical feature includes weakness of the foot and lower leg muscles</option>
+        </options>
+      </dialogue>
+    </npc>
+
+	</npcs>
+</chapter>

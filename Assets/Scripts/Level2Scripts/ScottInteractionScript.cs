@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.ParserXML;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -38,12 +39,8 @@ namespace Assets.Scripts.Level2Scripts
 
         // Dialogue Variables
 
-        private readonly string[] _PlayerLines1 = {
-            "Hi, Scott! Can I help you?",
-            "Do you need help, Scott? Martha told me you couldn't climb the stairs on your own.",
-            "Hey, Scott. I'm here to help you, but just because Martha told me to. I won't help you anymore.... So stop bugging everyone",
-            "Martha told me you were having trouble climbing those stairs. I just came to watch you struggle."
-        };
+        private string[] _PlayerLines1;
+
         private readonly int[] _PlayerLines1Scores = { 10, 5, 0, -5 };
         private readonly int[] _PlayerLines2AScores = { 10, -6 };
         private readonly int[] _PlayerLines2BScores = { 10, -6 };
@@ -52,52 +49,23 @@ namespace Assets.Scripts.Level2Scripts
 
         private bool _didntHelp = false;
 
-        private readonly string[] _PlayerLines2A = {
-            "Sure, you can grab onto me. Let's go to class together!",
-            "Maybe I was wrong. I don't really want to help you now. I don't want to be late for class."
-        };
+        private string[] _PlayerLines2A;
 
-        private readonly string[] _PlayerLines2B = {
-            "That's what I came here for, Newkid. Let's go to class together.",
-            "I don't think so. I think you can climb the stairs on your own if you make an effort."
-        };
+        private string[] _PlayerLines2B;
 
-        private readonly string[] _PlayerLines2C = {
-            "Ok, then. Let's get this over with.",
-            "Then start climbing these stairs on your own and don't be so dependent of others."
-        };
+        private string[] _PlayerLines2C;
 
-        private readonly string[] _PlayerLines2D = {
-            "Ok, I'll help you but you will owe me one.",
-            "No way. Watching you have a hard time is so funny."
-        };
+        private string[] _PlayerLines2D;
 
-        private readonly string[] _ScottLines1 = {
-            "Yes, please. I am having a bit of trouble climbing these stairs. Would you mind if I grabbed onto you?",
-            "Yes, it's true... Could you please help me?",
-            "It's not my intention to bother people... I'm just having a hard time climbing these stairs.",
-            "That's not cool. I'm really struggling. Please, help me climb these stairs."
-        };
+        private string[] _ScottLines1;
 
-        private readonly string[] _ScottLines2A = {
-            "You're really nice. Maybe we could be friends.",
-            "I really thought you were going to help me. You seemed nice."
-        };
+        private string[] _ScottLines2A;
 
-        private readonly string[] _ScottLines2B = {
-            "Sure. You are nice. Can we be friends?",
-            "I would if I could. Forget I asked for your help. You seemed kind of nice."
-        };
+        private string[] _ScottLines2B;
 
-        private readonly string[] _ScottLines2C = {
-            "I am happy that you're helping me. I hope I'm not bothering you too much.",
-            "I would if I could. I thought you were going to help me, but after all, you're not nice."
-        };
+        private string[] _ScottLines2C;
 
-        private readonly string[] _ScottLines2D = {
-            "I'm glad for your help, but I don't think we should be keeping score on who helps one another.",
-            "You are really rude. If you didn't want to help me, you shouldn't have come."
-        };
+        private string[] _ScottLines2D;
 
         private string _optionsToPrint;
 
@@ -139,6 +107,54 @@ namespace Assets.Scripts.Level2Scripts
         // Start interaction
         public void Start()
         {
+            Assets.Scripts.ParserXML.Parser parser = new Assets.Scripts.ParserXML.Parser();
+            List<NPC> npcs = parser.npcs;
+
+            _PlayerLines1 = new string[4];
+            _PlayerLines2A = new string[2];
+            _PlayerLines2B = new string[2];
+            _PlayerLines2C = new string[2];
+            _PlayerLines2D = new string[2];
+            _ScottLines1 = new string[4];
+            _ScottLines2A = new string[4];
+            _ScottLines2B = new string[4];
+            _ScottLines2C = new string[4];
+            _ScottLines2D = new string[4];
+
+            _PlayerLines1[0] = npcs[3].dialogues[0].Options[0];
+            _PlayerLines1[1] = npcs[3].dialogues[0].Options[1];
+            _PlayerLines1[2] = npcs[3].dialogues[0].Options[2];
+            _PlayerLines1[3] = npcs[3].dialogues[0].Options[3];
+
+            _PlayerLines2A[0] = npcs[3].dialogues[1].Options[0];
+            _PlayerLines2A[1] = npcs[3].dialogues[1].Options[1];
+
+            _PlayerLines2B[0] = npcs[3].dialogues[2].Options[0];
+            _PlayerLines2B[1] = npcs[3].dialogues[2].Options[1];
+
+            _PlayerLines2C[0] = npcs[3].dialogues[3].Options[0];
+            _PlayerLines2C[1] = npcs[3].dialogues[3].Options[1];
+
+            _PlayerLines2D[0] = npcs[3].dialogues[4].Options[0];
+            _PlayerLines2D[1] = npcs[3].dialogues[4].Options[1];
+
+            _ScottLines1[0] = npcs[3].dialogues[5].Options[0];
+            _ScottLines1[1] = npcs[3].dialogues[5].Options[1];
+            _ScottLines1[2] = npcs[3].dialogues[5].Options[2];
+            _ScottLines1[3] = npcs[3].dialogues[5].Options[3];
+
+            _ScottLines2A[0] = npcs[3].dialogues[6].Options[0];
+            _ScottLines2A[1] = npcs[3].dialogues[6].Options[1];
+
+            _ScottLines2B[0] = npcs[3].dialogues[7].Options[0];
+            _ScottLines2B[1] = npcs[3].dialogues[7].Options[1];
+
+            _ScottLines2C[0] = npcs[3].dialogues[8].Options[0];
+            _ScottLines2C[1] = npcs[3].dialogues[8].Options[1];
+
+            _ScottLines2D[0] = npcs[3].dialogues[9].Options[0];
+            _ScottLines2D[1] = npcs[3].dialogues[9].Options[1];
+
             // initialize control variables
             _playerLevelScore = 0;
             _mainCharacterDialogueCounter = 0;

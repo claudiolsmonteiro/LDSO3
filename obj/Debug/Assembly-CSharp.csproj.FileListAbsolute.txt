@@ -1,1 +1,2 @@
 C:\Users\claudio\Desktop\GitHub\LDSO3\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
+C:\Users\J-PC\Desktop\LDSO-final\LDSO3-master\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
