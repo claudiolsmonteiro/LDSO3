@@ -1,0 +1,240 @@
+<chapter>
+	<npcs>
+		<npc name="Jimmy">
+      <dialogue id="first">
+        <text>Olá, queres jogar futebol connosco?</text>
+        <answer></answer>
+        <options>
+          <option action="dialogueA">Olá! Sim, isso seria ótimo.</option>
+          <option action="dialogueB">Olá! Obrigado, mas não.</option>
+        </options>
+      </dialogue>
+      <dialogue id="second">
+        <text>Ótimo, estamos a precisar de um jogador. Podes ajudar-nos a encontrar um?</text>
+        <answer>Que bom, vejo-te depois!</answer>
+        <options>
+          <option action="dialogueA">Claro, vou procurar alguém.</option>
+          <option action="dialogueB">Acho que talvez me junto a vocès depois.</option>
+        </options>
+      </dialogue>
+			<dialogue id="A">
+				<text>Olá, estamos a precisar de mais um jogador, queres-te juntar a nós?</text>
+				<answer>Olá, obrigado. Eu adoraria poder jogar com vocês, mas infelizmente não posso.</answer>
+				<options>
+					<option action="dialogueA">Porquè? Há algo errado?</option>
+					<option action="dialogueB">Porque não. Não pareces doente nem nada.</option>
+				</options>
+			</dialogue>
+			<dialogue id="B">
+				<text></text>
+				<answer>Sim, eu tenho uma doença chamada Charcot-Marie-Tooth. O que torna complicado para mim manter o balanço e ter controlo do corpo como tu.</answer>
+				<options>
+					<option action="dialogueAA">Oh, Sinto muito ouvir isso. Se quiseres, posso falar com o resto dos meus amigos e podemos jogar outro jogo.</option>
+					<option action="dialogueAB">Oh, Sinto muito ouvir isso. Acho que vamos ter de jogar com número ímpar de jogadores. Vejo-te por aí!</option>
+					<option action="dialogueAC">Podes ser o guarda-redes. Não tens de te movimentar muito.</option>
+					<option action="dialogueAD">Acho que ninguém vai querer jogar contigo. Vou tentar encontrar outra pessoa.</option>
+				</options>
+			</dialogue>
+			<dialogue id="C">
+				<text></text>
+				<answer>Não devias julgar um livro pela capa. Não pareço doente mas tenho uma doença chamada Charcot-Marie-Tooth.O que torna complicado para mim manter o balanço e ter controlo do corpo como tu</answer>
+				<options>
+					<option action="dialogueBA">Desculpa ter dito isso. Foi rude. Se quiseres posso pedir aos outros para jogar outro jogo para te poderes juntar a nós</option>
+					<option action="dialogueBB">Desculpa ter dito isso. Foi rude.Acho que vamos ter de jogar com número ímpar de jogadores. Vejo-te por aí!</option>
+					<option action="dialogueBC">Podes ser o guarda-redes. Não tens de te movimentar muito</option>
+					<option action="dialogueBD">Acho que ninguém vai querer jogar contigo. Vou tentar encontrar outra pessoa</option>
+				</options>
+			</dialogue>
+	      <dialogue id="D">
+	        <text></text>
+	        <answer></answer>
+	        <options>
+	          <option action="dialogueCA">Obrigado, fico muito contente.</option>
+	          <option action="dialogueCB">Oh, ok ... Vejo-te depois então.</option>
+	          <option action="dialogueCC">Acho que vou passar a oferta</option>
+	          <option action="dialogueCD">Isso não foi muito correto da tua parte. Até parecias ser um rapaz bastante respeitador ao início.</option>
+	        </options>
+	      </dialogue>
+      <dialogue id="E">
+        <text>Oh, ok. Talvez nos encontremos mais tarde!</text>
+        <answer></answer>
+        <options>
+          <option action="dialogueEA">Sem problema, acho que não foste rude. eu gostaria que pudessem jogar um jogo em que eu pudesse participar.</option>
+          <option action="dialogueEB">Certo, sem problema. Vejo-te por aí.</option>
+          <option action="dialogueEC">Não, obrigado. Vou fazer outra coisa qualquer.</option>
+          <option action="dialogueED">Estás a ser muito rude.</option>
+        </options>
+      </dialogue>
+		</npc>
+
+		<npc name="Footballer">
+			<dialogue id="A">
+	        	<text>Olá, queres jogar futebol connosco?</text>
+	        	<answer></answer>
+	        	<options>
+	        		<option action="dialogueAA">Olá! Sim, isso seria ótimo.</option>
+	          		<option action="dialogueAB">Olá! Obrigado, mas não.</option>
+	        	</options>
+	        </dialogue>
+	        <dialogue id="B">
+	        	<text>Ótimo, estamos a precisar de um jogador. Podes ajudar-nos a encontrar um?</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueBA">Claro, vou procurar alguém.</option>
+	          		<option action="dialogueBB">Acho que talvez me junto a vocès depois.</option>
+	          	</options>
+	        </dialogue>
+	        <dialogue id="C">
+	        	<text>Ótimo! Ficamos à tua espera!</text>
+	        	<answer></answer>
+	        	<options>
+	          	</options>
+	        </dialogue>
+		</npc>
+
+		<npc name="Martha">
+			<dialogue id="A">
+	        	<text>Olá Jimmy! Podes ajudar o Scott? Ele está a tentar subir as escadas dentro da escola, mas parece que não vai conseguir sem alguma ajuda.</text>
+	        	<answer></answer>
+	        	<options>
+	        		<option action="dialogueBA">Olá! Certo, vou ajudá-lo!</option>
+	          		<option action="dialogueBB">Desculpa, mas não quero chegar atrasado à minha aula.</option>
+	        	</options>
+	        </dialogue>
+	        <dialogue id="B">
+	        	<text>Ótimo, ele está dentro da escola, não muito longe da entrada.</text>
+	        	<answer></answer>
+	        	<options>
+	          	</options>
+	        </dialogue>
+		</npc>
+
+		<npc name="Scott">
+	        <dialogue id="A">
+	        	<text>PlayerLines2A</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueCA">Claro, pode-te apoiar em mim. Vamos juntos para a sala</option>
+	          		<option action="dialogueCB">Afinal não te vou ajudar.Estou atrasado para a minha aula.</option>
+	          	</options>
+	        </dialogue>
+	        <dialogue id="B">
+	        	<text>PlayerLines2B</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueBA">Foi mesmo para isso que aqui vim. Vamos juntos para a aula.</option>
+	          		<option action="dialogueBB">Não me parece, acho que consegues subir as escadas sozinho se te esforçares.</option>
+	          	</options>
+	        </dialogue>
+	        <dialogue id="C">
+	        	<text>PlayerLines2C</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueCA">Ok, então. Siga lá!</option>
+	          		<option action="dialogueCB">Começa a subir as escadas sozinho para não estares dependente dos outros.</option>
+	          	</options>
+	        </dialogue>
+	        <dialogue id="D">
+	        	<text>PlayerLines2D</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueDA">Ok, eu ajudo-te mas ficas-me a dever uma.</option>
+	          		<option action="dialogueDB">Nem pensar. Ver-te a tentar subir sozinho é tão engraçado</option>
+	          	</options>
+	        </dialogue>
+
+	        <dialogue id="E">
+	        	<text>_ScottLines1</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueEA">Sim, por favor.Estou a ter algumas dificuldades para subir as escadas. Emportas-te que me apoie em ti?</option>
+	          		<option action="dialogueEB">Sim, é verdade... Podes ajudar-me?</option>
+	          		<option action="dialogueEC">A minha intenção não é chatear as pessoas... Estou é a ter algumas dificuldades para subir as escadas.</option>
+	          		<option action="dialogueED">Isso não foi bonito, estou realmente a ter dificuldades. Ajuda-me a subir as escadas por favor.</option>
+	          	</options>
+	        </dialogue>
+	        <dialogue id="F">
+	        	<text>_ScottLines2A</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueFA">És muito simpático, talvez possamos ser amigos.</option>
+	          		<option action="dialogueFB">Pensei que me ias ajudar. Parecias simpático.</option>
+	          	</options>
+	        </dialogue>
+	        <dialogue id="G">
+	        	<text>_ScottLines2B</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueGA">Certo. És muito simpático, talvez possamos ser amigos.</option>
+	          		<option action="dialogueGB">Iria se conseguisse. Desculpa ter-te pedido ajuda, mas até parecias simpático.</option>
+	          	</options>
+	        </dialogue>
+	        <dialogue id="H">
+	        	<text>_ScottLines2C</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueHA">Estou feliz pela tua ajuda.Espero não te estar a dar muito trabalho.</option>
+	          		<option action="dialogueHB">Iria se conseguisse.. Pensei que ias ajudar, mas não és tão simpático como parecias.</option>
+	          	</options>
+	        </dialogue>
+	        <dialogue id="I">
+	        	<text>_ScottLines2D</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueDA">Fico feliz com a ajuda, mas penso que não deverias pedir nada em troca nesta situação.</option>
+	          		<option action="dialogueDB">És mesmo rude. Se não querias ajudar, não precisavas ter vindo até aqui</option>
+	          	</options>
+	        </dialogue>
+
+		</npc>
+
+		<npc name="Professor">
+			<dialogue id="A">
+	        	<text>_scottLines</text>
+	        	<answer></answer>
+	        	<options>
+	        		<option action="dialogueAA">Olá, Scott. \n Desculpa não te ter ajudado antes.</option>
+	          		<option action="dialogueAB">Precisas de ajuda?</option>
+	        	</options>
+	        </dialogue>
+	        <dialogue id="B">
+	        	<text>_jimmyLines</text>
+	        	<answer></answer>
+	        	<options>
+	          		<option action="dialogueBA">Oh, olá Jimmy. Sem problema, mas devias ter mais cuidado com o que dizes.</option>
+	          		<option action="dialogueBB">Certo, se não te importares.</option>
+	          	</options>
+	        </dialogue>
+	        <dialogue id="C">
+	        	<text>professorLines</text>
+	        	<answer></answer>
+	        	<options>
+	        		<option action="dialogueCA">Bom dia, Jimmy! \n Viste o Scott? \n Ele não se costuma atrasar.</option>
+	          		<option action="dialogueCB">Não achas que o deverias ajudar? Vai lá!</option>
+	          	</options>
+	        </dialogue>
+	        <dialogue id="D">
+	        	<text>jimmyLines</text>
+	        	<answer></answer>
+	        	<options>
+	        		<option action="dialogueDA">Bom dia, Professor Woods. Sim,Ele está a tentar subir as escadas</option>
+	          		<option action="dialogueDB">Sim, Mr Woods...</option>
+	          	</options>
+	        </dialogue>
+		</npc>
+
+    <npc name="CMTFacts">
+      <dialogue id="A">
+        <text>facts</text>
+        <answer></answer>
+        <options>
+          <option action="fact1">CMT é uma das doenças neurológicas hereditárias mais comuns</option>
+          <option action="fact2">CMT afeta aproximadamente 1 em 2500 pessoas</option>
+          <option action="fact3">CMT é também conhecida como "hereditary motor and sensory neuropathy"</option>
+          <option action="fact4">Uma das manifestações da CMT é a fraquesa dos músculos das pernas e dos pés</option>
+        </options>
+      </dialogue>
+    </npc>
+
+  </npcs>
+</chapter>
