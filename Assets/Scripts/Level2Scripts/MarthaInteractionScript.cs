@@ -1,3 +1,4 @@
+using Assets.Scripts.ParserXML;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,10 +14,10 @@ namespace Assets.Scripts.Level2Scripts
         public GameObject Button;
         string _message;
         Text _textComp;
-  
+
         // Dialogue Variables
-        public string[] MarthaLines = {"Hey Jimmy! Can you please help Scott? He's trying to climb the stairs but he can't seem to do it without help.", "Cool, he's right by the school's entrance"};
-        public string[] Replies1 = {"Hi! Sure, I'll help him!", "Hi! Sorry, but I don't want to arrive late to my class..."};
+        public string[] MarthaLines;
+        public string[] Replies1;
         private List<string[]> _answersList;
         private Button _answerA;
         private Button _answerB;
@@ -32,6 +33,19 @@ namespace Assets.Scripts.Level2Scripts
 
         // Initializ
         public void Start() {
+
+            //initialize dialogue
+            Assets.Scripts.ParserXML.Parser parser = new Assets.Scripts.ParserXML.Parser();
+            List<NPC> npcs = parser.npcs;
+
+            MarthaLines = new string[2];
+            Replies1 = new string[2];
+
+            MarthaLines[0] = npcs[2].dialogues[0].Text;
+            MarthaLines[1] = npcs[2].dialogues[1].Text;
+
+            Replies1[0] = npcs[2].dialogues[0].Options[0];
+            Replies1[1] = npcs[2].dialogues[0].Options[1];
 
             // Initialize variables
             InitializeCtrlVariables();

@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Assets.Scripts.ParserXML;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
 using System.Xml.Linq;
 using UnityEngine;
 
@@ -9,36 +11,52 @@ namespace Assets.Scripts.ParserXML
 {
     class Parser
     {
-        static Parser()
+        public List<NPC> npcs;
+        public string path;
+        public Parser()
         {
-            XDocument doc = XDocument.Load("Assets/Scripts/ParserXML/XML.xml");
+            if (PlayerPrefs.HasKey("language"))
+            {
+                path = PlayerPrefs.GetString("language");
+            }
+            else
+            {
+                path = "Assets/Scripts/ParserXML/english.xml";
+            }
 
-            List<NPC> npcs = new List<NPC>();
+            XmlDocument doc = new XmlDocument();
+            doc.Load(path);
 
-            foreach(XElement npc in doc.Root.Element("npcs").Elements("npc")) {
+            npcs = new List<NPC>();
+
+            foreach(XmlElement npc in doc.GetElementsByTagName("npc"))
+            {
                 List<Dialogue> dialogues = new List<Dialogue>();
-                foreach(XElement dialogue in npc.Elements("dialogue"))
+                foreach (XmlElement dialogue in npc.GetElementsByTagName("dialogue"))
                 {
                     List<string> options = new List<string>();
-                    foreach(XElement option in dialogue.Elements("options"))
+                    foreach (XmlElement option in dialogue.GetElementsByTagName("options")[0].ChildNodes)
                     {
-                        options.Add(option.Value);
+                        options.Add(option.InnerText);
                     }
                     dialogues.Add(new Dialogue(
-                        dialogue.Element("text").Value,
-                        dialogue.Element("answer").Value,
+                        dialogue.GetElementsByTagName("text")[0].InnerText,
+                        dialogue.GetElementsByTagName("answer")[0].InnerText,
                         options
                         ));
                 }
-                npcs.Add(new NPC(npc.Attribute("name").Value, dialogues));
+                npcs.Add(new NPC(npc.GetAttribute("name"), dialogues));
             }
-            Debug.Log(npcs.ElementAt(0).Name);
-            Debug.Log(npcs.ElementAt(0).dialogues.ElementAt(0).Text);
+
+
+
+
+            //npcs = new List<NPC>();
+
         }
 
-        public void parseConversation(string npc)
-        {
 
-        }
+
     }
+
 }

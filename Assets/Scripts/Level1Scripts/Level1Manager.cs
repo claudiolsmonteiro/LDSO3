@@ -1,3 +1,4 @@
+using Assets.Scripts.ParserXML;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,12 +13,13 @@ namespace Assets.Scripts.Level1Scripts
         public float LetterPause = 0.05f;
         public GameObject Button;
         string _message;
+        string _nomessage;
         Text _textComp;
-  
+
         // Dialogue Variables
-        public string[] Messages = {"Hi! Do you want to play football with us?", "Great! We're missing a player. Do you want to help us find one?", "Cool! See you later!"};
-        public string[] Replies1 = {"Hi! Yeah, that sound's great", "Hi! Thank you, but no."};
-        public string[] Replies2 = {"Sure, I'll look for somebody", "Actually, I think I'll maybe join you later"};
+        public string[] Messages; 
+        public string[] Replies1;
+        public string[] Replies2;
         private List<string[]> _answersList;
         private Button _answerA;
         private Button _answerB;
@@ -34,7 +36,24 @@ namespace Assets.Scripts.Level1Scripts
         // Initializ
         public void Start() {
 
-            //Parser cenas = new Parser();
+            Assets.Scripts.ParserXML.Parser cenas = new Assets.Scripts.ParserXML.Parser();
+            List<NPC> npcs = cenas.npcs;
+
+            Messages = new string[3];
+            Replies1 = new string[2];
+            Replies2 = new string[2];
+            
+            Messages[0] = npcs[0].dialogues[0].Text;
+            Messages[1] = npcs[0].dialogues[1].Text;
+            Messages[2] = npcs[0].dialogues[1].Answer;
+
+            Replies1[0] = npcs[0].dialogues[0].Options[0];
+            Replies1[1] = npcs[0].dialogues[0].Options[1];
+
+            Replies2[0] = npcs[0].dialogues[1].Options[0];
+            Replies2[1] = npcs[0].dialogues[1].Options[1];
+
+            _nomessage = npcs[0].dialogues[6].Text;
 
             // Initialize variables
             InitializeCtrlVariables();
@@ -83,8 +102,7 @@ namespace Assets.Scripts.Level1Scripts
             }
             ClearText();
             HideButtons();
-            _message = "Oh, ok. Maybe I'll see you later!";
-            StartCoroutine(TypeText(_message));
+            StartCoroutine(TypeText(_nomessage));
             _interactionOver=true;
         }
 

@@ -8,12 +8,17 @@ namespace Assets.Scripts
         // Change Scene
         public void ChangeToScene (string scene) {
             SceneManager.LoadScene(scene, LoadSceneMode.Single);
-            //Parser cenas = new Parser();
         }
 
         public void SetCharacter(string character)
         {
             PlayerPrefs.SetString("character", character);
+        }
+
+        public void SetLanguage(string language)
+        {
+            string lang = "Assets/Scripts/ParserXML/"+language+".xml";
+            PlayerPrefs.SetString("language", lang);
         }
 
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.ParserXML;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -31,47 +32,23 @@ public class CMTInteractionScript : MonoBehaviour
     private Button _answerC;
     private Button _answerD;
 
+
+
     // Dialogue Variables
-    private readonly string[] _mainCharacterLines = { "Hey new kid! Wanna join us playing football? We need one more player." };
-    private readonly string[] _cmtCharacterLines = { "Hey there, thanks. I would love to play with you, but I cannot play football." };
+    private string[] _mainCharacterLines;
+    private string[] _cmtCharacterLines;
 
-    private readonly string[] _questionChoices1 = {
-        "Why? Is there something wrong?",
-        "Why not? You don't look sick or anything."
-    };
+    private string[] _questionChoices1;
 
-    private readonly string[] _answers1 = {
-        "Yes, I have a disease called Charcot-Marie-Tooth. It makes it really hard for me to maintain balance and control my body like you.",
-        "You shouldn't assume things just by looking at people. I'm not sick, but I actually have this disease called Charcot-Marie-Tooth. It makes it really hard for me to maintain balance and control my body like you."
-    };
+    private string[] _answers1;
 
-    private readonly string[] _questionChoices2 = {
-        "Oh, I'm sorry to hear that. If you want, I can ask the guys to play something other than football so you can join us." ,
-        "Oh, I'm sorry to hear that. I guess we'll have to play with an odd number of players, then. See you later!",
-        "You can be the goalkeeper, then. You won't have to move too much and we get to play with an even number of players.",
-        "I guess no one will want to play with you then. I'll try to find someone else."
-    };
+    private string[] _questionChoices2;
 
-    private readonly string[] _answers2 = {
-        "Thanks. I really appreciate it.",
-        "Oh, ok ... See you later then.",
-        "I think I'll pass.",
-        "That was not very nice from you. You seemed like a respectful guy at first."
-    };
+    private string[] _answers2;
 
-    private readonly string[] _questionChoices3 = {
-        "I'm sorry I said that. That was rude. If you want, I can ask the guys to play something other than football so you can join us.",
-        "I'm sorry I said that. That was rude. I guess we'll have to play with an odd number of players, then. See you later!",
-        "You can be the goalkeeper, then. You won't have to move too much and we get to play with an even number of players.",
-        "Who cares? No one will want to play with you, then. I'll try to find someone else."
-    };
+    private string[] _questionChoices3;
 
-    private readonly string[] _answers3 = {
-        "No problem, I don't think you meant to be rude. I'd really appreciate it if you guys played something else just so I can play too.",
-        "Sure, no problem. See you later, then.",
-        "No thanks. I'd rather do something else.",
-        "You are really rude."
-    };
+    private string[] _answers3;
 
     // 1 -> End of Interaction
     private List<int[]> _answerController;
@@ -120,9 +97,48 @@ public class CMTInteractionScript : MonoBehaviour
         _displayNextButton = false;
         _questionsIterator = 0;
 
+        //initialize dialogue
+        Assets.Scripts.ParserXML.Parser cenas = new Assets.Scripts.ParserXML.Parser();
+        List<NPC> npcs = cenas.npcs;
 
-        // Get Character's Lines
-        //  XMLParser("level1, mainCharacterLines ,cmtCharacterLines");
+        _mainCharacterLines = new string[1];
+        _cmtCharacterLines = new string[1];
+        _questionChoices1 = new string[2];
+        _answers1 = new string[2];
+        _questionChoices2 = new string[4];
+        _answers2 = new string[4];
+        _questionChoices3 = new string[4];
+        _answers3 = new string[4];
+
+        _mainCharacterLines[0] = npcs[0].dialogues[2].Text;
+        _cmtCharacterLines[0] = npcs[0].dialogues[2].Answer;
+
+        _questionChoices1[0] = npcs[0].dialogues[2].Options[0];
+        _questionChoices1[1] = npcs[0].dialogues[2].Options[1];
+
+        _answers1[0] = npcs[0].dialogues[3].Answer;
+        _answers1[1] = npcs[0].dialogues[4].Answer;
+
+        _questionChoices2[0] = npcs[0].dialogues[3].Options[0];
+        _questionChoices2[1] = npcs[0].dialogues[3].Options[1];
+        _questionChoices2[2] = npcs[0].dialogues[3].Options[2];
+        _questionChoices2[3] = npcs[0].dialogues[3].Options[3];
+
+        _answers2[0] = npcs[0].dialogues[5].Options[0];
+        _answers2[1] = npcs[0].dialogues[5].Options[1];
+        _answers2[2] = npcs[0].dialogues[5].Options[2];
+        _answers2[3] = npcs[0].dialogues[5].Options[3];
+
+        _questionChoices3[0] = npcs[0].dialogues[4].Options[0];
+        _questionChoices3[1] = npcs[0].dialogues[4].Options[1];
+        _questionChoices3[2] = npcs[0].dialogues[4].Options[2];
+        _questionChoices3[3] = npcs[0].dialogues[4].Options[3];
+
+        _answers3[0] = npcs[0].dialogues[6].Options[0];
+        _answers3[1] = npcs[0].dialogues[6].Options[1];
+        _answers3[2] = npcs[0].dialogues[6].Options[2];
+        _answers3[3] = npcs[0].dialogues[6].Options[3];
+
 
         // Get main character's speech objects
         _mainCharacterSpeechBalloon = GameObject.Find("mainCharacterSpeech").GetComponent<Image>();
