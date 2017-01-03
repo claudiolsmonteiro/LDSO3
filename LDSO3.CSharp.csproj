@@ -94,8 +94,8 @@
     <Compile Include="Assets\Scripts\Utilities\Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Scripts\ParserXML\english.xml" />
-    <None Include="Assets\Scripts\ParserXML\portuguese.xml" />
+    <None Include="Assets\Resources\Dialogues\english.xml" />
+    <None Include="Assets\Resources\Dialogues\portuguese.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

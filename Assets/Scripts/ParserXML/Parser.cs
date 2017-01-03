@@ -21,11 +21,15 @@ namespace Assets.Scripts.ParserXML
             }
             else
             {
-                path = "Assets/Scripts/ParserXML/english.xml";
+                path = "Dialogues/english";
             }
 
+            TextAsset textAsset = Resources.Load(path) as TextAsset;
+      
             XmlDocument doc = new XmlDocument();
-            doc.Load(path);
+
+            doc.LoadXml(textAsset.text);
+            
 
             npcs = new List<NPC>();
 

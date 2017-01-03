@@ -17,7 +17,7 @@ namespace Assets.Scripts
 
         public void SetLanguage(string language)
         {
-            string lang = "Assets/Scripts/ParserXML/"+language+".xml";
+            string lang = "Dialogues/"+language;
             PlayerPrefs.SetString("language", lang);
         }
 
