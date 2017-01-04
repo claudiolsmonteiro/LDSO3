@@ -25,7 +25,8 @@ namespace Assets.Scripts.ParserXML
             }
 
             TextAsset textAsset = Resources.Load(path) as TextAsset;
-      
+        
+
             XmlDocument doc = new XmlDocument();
 
             doc.LoadXml(textAsset.text);

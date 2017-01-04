@@ -90,6 +90,7 @@
     <Compile Include="Assets\Scripts\Level3Scripts\Level3CollisionScript.cs" />
     <Compile Include="Assets\Scripts\Level3Scripts\Level3Ending.cs" />
     <Compile Include="Assets\Scripts\Level3Scripts\ProfessorInteractionScript.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\Sound.cs" />
     <Compile Include="Assets\Scripts\ParserXML\Dialogue.cs" />
     <Compile Include="Assets\Scripts\ParserXML\NPC.cs" />
     <Compile Include="Assets\Scripts\ParserXML\Parser.cs" />
@@ -99,7 +100,8 @@
     <Compile Include="Assets\Scripts\Utilities\Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Scripts\ParserXML\XML.xml" />
+    <None Include="Assets\Resources\Dialogues\english.xml" />
+    <None Include="Assets\Resources\Dialogues\portuguese.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
