@@ -211,7 +211,7 @@
 	        	<text>_scottLines</text>
 	        	<answer></answer>
 	        	<options>
-	        		<option action="dialogueAA">Hey, Scott. \n Sorry I didn't help you before</option>
+	        		<option action="dialogueAA">Hey, Scott. Sorry I didn't help you before</option>
 	          		<option action="dialogueAB">Do you want some help?</option>
 	        	</options>
 	        </dialogue>
@@ -227,7 +227,7 @@
 	        	<text>professorLines</text>
 	        	<answer></answer>
 	        	<options>
-	        		<option action="dialogueCA">Good morning, Jimmy! \n Have you seen Scott? \n He's usually not late for classes</option>
+	        		<option action="dialogueCA">Good morning, Jimmy! Have you seen Scott? He's usually not late for classes</option>
 	          		<option action="dialogueCB">And don't you think you should help him? Go get him right now!</option>
 	          	</options>
 	        </dialogue>

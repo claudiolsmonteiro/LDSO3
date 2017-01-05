@@ -193,7 +193,7 @@
 	        	<text>_scottLines</text>
 	        	<answer></answer>
 	        	<options>
-	        		<option action="dialogueAA">Olá, Scott. \n Desculpa não te ter ajudado antes.</option>
+	        		<option action="dialogueAA">Olá, Scott. Desculpa não te ter ajudado antes.</option>
 	          		<option action="dialogueAB">Precisas de ajuda?</option>
 	        	</options>
 	        </dialogue>
@@ -209,7 +209,7 @@
 	        	<text>professorLines</text>
 	        	<answer></answer>
 	        	<options>
-	        		<option action="dialogueCA">Bom dia, Jimmy! \n Viste o Scott? \n Ele não se costuma atrasar.</option>
+	        		<option action="dialogueCA">Bom dia, Jimmy! Viste o Scott? Ele não se costuma atrasar.</option>
 	          		<option action="dialogueCB">Não achas que o deverias ajudar? Vai lá!</option>
 	          	</options>
 	        </dialogue>
